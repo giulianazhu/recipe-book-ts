@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import GlobalStyles from "./styles/globalStyles";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AppLayout from "./layouts/AppLayout";
+import AppLayout from "./ui/AppLayout";
 import AddPage from "./pages/AddPage";
 import SearchPage from "./pages/SearchPage";
 import RecipeList from "./features/recipes/RecipeList";
