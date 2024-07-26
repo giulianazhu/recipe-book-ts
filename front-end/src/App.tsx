@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import GlobalStyles from "./styles/globalStyles";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AppLayout from "./layouts/AppLayout";
+import AddPage from "./pages/AddPage";
+import SearchPage from "./pages/SearchPage";
+import RecipeList from "./features/recipes/RecipeList";
+import RecipePage from "./pages/RecipePage";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60,
+      },
+    },
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <GlobalStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Navigate replace to="home" />} />
+          <Route path="home" element={<HomePage />} />
+          <Route element={<AppLayout />}>
+            <Route path="add" element={<AddPage />} />
+            <Route element={<SearchPage />}>
+              <Route path="search" element={<RecipeList />} />
+              {/* <Route path="searchinf" element={<InfRecipeList />} /> */}
+            </Route>
+            <Route path="search/:id" element={<RecipePage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
