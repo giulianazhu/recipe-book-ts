@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { media } from "../styles/optionStyles";
+import { media, x2boxShadow } from "../styles/optionStyles";
 import { NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -10,7 +10,9 @@ const Container = styled.nav`
   display: flex;
   align-items: center;
   gap: 2em;
-  background-color: white;
+  background-color: var(--color-brown-100);
+  box-shadow: ${x2boxShadow.md};
+  color: var(--color-brown-900);
   opacity: 0.7;
   ${media.md} {
     background-image: url("/chef.svg");
@@ -25,9 +27,9 @@ const Logo = styled(NavLink)`
   height: 4rem;
   overflow: hidden;
   border-radius: 50%;
-  background-color: var(--color-beige-200);
+  background-color: white;
   &:hover {
-    background-color: var(--color-beige-400);
+    background-color: var(--color-brown-400);
   }
   & img {
     object-position: center;
@@ -42,10 +44,10 @@ export const Toggler = styled.button`
   all: initial;
   display: none;
   color: inherit;
-  font-size: 2.5em;
+  font-size: 2em;
   cursor: pointer;
   &:hover {
-    color: var(--color-beige-400);
+    color: var(--color-brown-400);
   }
   ${media.md} {
     display: flex;
@@ -55,9 +57,9 @@ export const Toggler = styled.button`
 
 export const Link = styled(NavLink)<{ $view?: string }>`
   padding: 0.2em 0.5em;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   &:hover {
-    color: var(--color-beige-900);
+    color: var(--color-brown-400);
   }
   ${(props) =>
     props.$view === "desktop" &&

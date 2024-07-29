@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 :root {
     --color-grey-100: #FFFFFF; 
-    --color-grey-200: #EBEBEB;
+    --color-grey-200: #EFEFEF;
     --color-grey-300: #CCCCCC;
     --color-grey-400: #ADADAD;
     --color-grey-500: #8F8F8F;
@@ -145,6 +145,9 @@ nav, main, footer{
   line-height: 1.7;
 } */
 
+  /* main {
+    padding-inline: 20rem;
+  } */
 
 `;
 

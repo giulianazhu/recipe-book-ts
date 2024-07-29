@@ -7,8 +7,9 @@ export const media = {
   sm: customMediaQuery(40), // 640px phone
   md: customMediaQuery(52), // 768px tablets
   lg: customMediaQuery(64), // 1024px laptops
-  xl: customMediaQuery(90), // 1440px monitors
-  xxl: customMediaQuery(160), // 2560px big screens
+  xl: customMediaQuery(78), // 1248px laptops
+  xxl: customMediaQuery(90), // 1440px monitors
+  xxxl: customMediaQuery(160), // 2560px big screens
 };
 
 export const boxShadow = {
@@ -28,12 +29,12 @@ export const x2boxShadow = {
 };
 
 export const buttonShadow = {
-  smDark:
+  sm_light:
     "0 1px 3px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(0, 0, 0, 0.1)",
-  smLight:
+  sm_dark:
     "0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)",
-  mdDark:
+  md_light:
     "0 2px 0 rgba(255, 255, 255, 0.15), inset 0 2px 2px rgba(0, 0, 0, 0.1)",
-  mdLight:
+  md_dark:
     "0 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 2px rgba(255, 255, 255, 0.15)",
 };

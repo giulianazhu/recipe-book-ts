@@ -6,40 +6,31 @@ import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import { boxShadow, buttonShadow } from "../styles/optionStyles";
 
 const StyledSearchInput = styled.span`
+  height: 3em;
   overflow: hidden;
   display: flex;
   border-radius: 15px;
   background-color: var(--color-grey-200);
-  /* box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2); */
   box-shadow: ${buttonShadow.smLight};
-
   & input {
     all: initial;
-    padding: 0.2em 0em 0.2em 0.5em;
+    padding: 0.5em;
     flex: 0 1 100%;
     font: inherit;
     color: var(--color-grey-700);
   }
   & button {
-    //button wrapping search logo svg
-    all: initial;
-    margin-inline-start: auto;
-    width: 50px;
-    height: 50px;
-    flex: 0 0 50px;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 3.5em;
+    border: none;
     background-color: var(--color-brown-300);
-    color: var(--color-grey-700);
     box-shadow: ${boxShadow.sm};
     cursor: pointer;
     &:hover {
-      color: white;
+      color: var(--color-brown-100);
     }
-  }
-  & svg {
-    width: 100%;
   }
 `;
 

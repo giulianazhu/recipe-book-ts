@@ -2,24 +2,25 @@ import styled, { css } from "styled-components";
 import useFilterContext from "../../contexts/useFilterContext";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
-import { boxShadow } from "../../styles/optionStyles";
+import { buttonShadow } from "../../styles/optionStyles";
 
 const Filter = styled.label<{ $checked?: boolean }>`
   padding: 0.5em 0.8em;
   border-radius: 15px;
-  background-color: var(--color-brown-300);
-  font-size: 0.8em;
-  color: white;
+  border: 1px solid var(--color-brown-200);
+  color: var(--color-brown-400);
+  font-size: 0.9em;
   cursor: pointer;
-  box-shadow: ${boxShadow.sm};
+  box-shadow: ${buttonShadow.sm_dark};
 
   &:hover {
-    background-color: var(--color-beige-500);
+    background-color: var(--color-grey-200);
   }
   ${(props) =>
     props.$checked &&
     css`
-      background-color: var(--color-beige-500);
+      color: var(--color-brown-700);
+      background-color: var(--color-grey-200);
       transform: scale(1.05);
     `}
   & label {

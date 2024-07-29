@@ -14,12 +14,10 @@ const StyledAppLayout = styled.div<{ $visible: boolean }>`
     !props.$visible &&
     css`
       max-height: 100vh;
-      overflow: hidden;
+      /* overflow: hidden; */
     `}
-  background-color: var(--color-brown-200);
+  background-color: var(--color-brown-100);
 `;
-
-const Container = styled.div<{ $visible: boolean }>``;
 
 export default function AppLayout() {
   const { toggle, mainVisible, handleToggle } = useToggle();
@@ -28,9 +26,7 @@ export default function AppLayout() {
     <StyledAppLayout $visible={mainVisible}>
       <NavBar onToggle={handleToggle} view="desktop" />
       <FilterProvider>
-        <Container $visible={mainVisible}>
-          <Outlet />
-        </Container>
+        <Outlet />
         <SideBar toggle={toggle} onToggle={handleToggle} />
       </FilterProvider>
       <Footer />

@@ -36,7 +36,7 @@ const SearchButton = styled(Button)`
   background-color: var(--color-brown-700);
   color: white;
   font-size: 0.8em;
-  box-shadow: ${buttonShadow.smLight};
+  box-shadow: ${buttonShadow.sm_dark};
   &:hover {
     transform: scale(1.02);
     background-color: var(--color-brown-500);
@@ -44,10 +44,8 @@ const SearchButton = styled(Button)`
   ${(props) =>
     props.type === "reset" &&
     css`
-      /* border: 1px solid var(--color-grey-200); */
-      /* box-shadow: initial; */
       background-color: var(--color-grey-200);
-      color: var(--color-brown-700);
+      color: var(--color-brown-600);
       &:hover {
         background-color: var(--color-grey-100);
       }
