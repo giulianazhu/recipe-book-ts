@@ -12,9 +12,19 @@ const GlobalStyles = createGlobalStyle`
     --color-grey-800: #333333; 
     --color-grey-900: #141414;
 
+    --color-accent-100: #E6F7F9; /* Very light teal */
+--color-accent-200: #CDEFF2; /* Light teal */
+--color-accent-300: #B3E6EB; /* Soft teal */
+--color-accent-400: #99DDE4; /* Light blue teal */
+--color-accent-500: #80D5DD; /* Medium teal */
+--color-accent-600: #66CCD6; /* Rich teal */
+--color-accent-700: #4DC3CF; /* Deeper teal */
+--color-accent-800: #33BAC8; /* Dark teal */
+--color-accent-900: #1AB1C1; /* Very dark teal */
+
     --color-brown-100: #FFFFFF; 
     --color-brown-200: #E0DCD8; 
-    --color-brown-300: #C9C2BB;
+    --color-brown-300: #C9C2BB; // like 
     --color-brown-400: #ADA399;
     --color-brown-500: #928577;
     --color-brown-600: #71665B;
@@ -76,7 +86,7 @@ body {
   line-height: 1.5;
   font-size: 1.6rem;
   font-family: Verdana, Helvetica, sans-serif;
-  color: var(--color-dark-100);
+  color: var(--color-grey-700);
 }
 
 input,
@@ -130,6 +140,10 @@ nav, main, footer{
  padding-inline: 3rem;
  padding-block: 2rem;
 }
+
+/* * {
+  line-height: 1.7;
+} */
 
 
 `;

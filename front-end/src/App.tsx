@@ -30,7 +30,6 @@ function App() {
             <Route path="add" element={<AddPage />} />
             <Route element={<SearchPage />}>
               <Route path="search" element={<RecipeList />} />
-              {/* <Route path="searchinf" element={<InfRecipeList />} /> */}
             </Route>
             <Route path="search/:id" element={<RecipePage />} />
           </Route>

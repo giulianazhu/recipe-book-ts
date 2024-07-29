@@ -5,16 +5,18 @@ import useOutClick from "../hooks/useOutClick";
 import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import { Link, Toggler } from "./NavBar";
 import { RxHamburgerMenu } from "react-icons/rx";
+import SearchBox from "../features/search/SearchBox";
+import useFilters from "../features/search/useFIlters";
+import Loader from "./Loader";
 
-const Container = styled.nav<{ $visible: boolean }>`
+const Container = styled.nav<{ $visible?: boolean }>`
   position: fixed;
+  top: 0;
   z-index: 100;
-  width: 100%;
-  min-height: 100vh;
-  height: 100%;
-  overflow: auto;
+  height: 100vh;
+  overflow-y: scroll;
   display: none;
-  background-color: #fff9f8;
+  background-color: var(--color-brown-100);
   transition: left 0.5s ease-in-out;
 
   ${media.md} {
@@ -32,20 +34,14 @@ const Container = styled.nav<{ $visible: boolean }>`
   }
 `;
 
-const StyledNavSection = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 2em;
-`;
-
 export interface SideBarProps {
   toggle: boolean;
   onToggle: () => void;
 }
 
 export default function SideBar({ toggle, onToggle }: SideBarProps) {
-  // const { cuisines, diets, difficulties, isPending, isError, error } =
-  //   useFilters();
+  const { cuisines, diets, difficulties, isPending, isError, error } =
+    useFilters();
 
   const elementRef = useRef<HTMLDivElement | null>(null);
 
@@ -57,20 +53,15 @@ export default function SideBar({ toggle, onToggle }: SideBarProps) {
 
   useOutClick(elementRef, handleOutClick);
 
-  // if (isPending)
-  //   return (
-  //     <StyledSideBar>
-  //       <Loader />;
-  //     </StyledSideBar>
-  //   );
+  if (isPending) return <Loader />;
 
-  // const useFiltersData = {
-  //   cuisines,
-  //   diets,
-  //   difficulties,
-  //   isError,
-  //   error,
-  // };
+  const filters = {
+    cuisines,
+    diets,
+    difficulties,
+    isError,
+    error,
+  };
 
   return (
     <Container $visible={toggle} ref={elementRef}>
@@ -78,16 +69,16 @@ export default function SideBar({ toggle, onToggle }: SideBarProps) {
         <Toggler>
           <RxHamburgerMenu onClick={onToggle} />
         </Toggler>
-        <StyledNavSection>
+        <FlexBox $justify="flex-end" $gap="1em">
           <Link to="/add" onClick={onToggle}>
             Add Recipe
           </Link>
-          <Link to="/searchinf" onClick={onToggle}>
-            Dummy
+          <Link to="/search" onClick={onToggle}>
+            Search
           </Link>
-        </StyledNavSection>
+        </FlexBox>
       </FlexBox>
-      {/* <SearchBox handleToggle={onToggle} useFiltersData={useFiltersData} /> */}
+      <SearchBox onSearchSubmit={onToggle} filters={filters} />
     </Container>
   );
 }

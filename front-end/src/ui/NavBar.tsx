@@ -21,14 +21,17 @@ const Container = styled.nav`
 `;
 
 const Logo = styled(NavLink)`
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   overflow: hidden;
-  flex: 0 0 3rem;
   border-radius: 50%;
   background-color: var(--color-beige-200);
   &:hover {
-    background-color: red;
+    background-color: var(--color-beige-400);
+  }
+  & img {
+    object-position: center;
+    object-fit: contain;
   }
   ${media.md} {
     display: none;
@@ -54,7 +57,7 @@ export const Link = styled(NavLink)<{ $view?: string }>`
   padding: 0.2em 0.5em;
   font-size: 1.8rem;
   &:hover {
-    color: var(--color-orange-900);
+    color: var(--color-beige-900);
   }
   ${(props) =>
     props.$view === "desktop" &&
@@ -85,7 +88,7 @@ export default function NavBar({ onToggle, view }: NavBarProps) {
       <Link to="/add" $view={view}>
         Add Recipe
       </Link>
-      <Link to="/searchinf" $view={view}>
+      <Link to="/search" $view={view}>
         Search_Inf
       </Link>
     </Container>
