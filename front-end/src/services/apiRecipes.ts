@@ -5,7 +5,7 @@ import { urlport } from "./config";
 export async function prefetchRecipes() {
   try {
     const res = await fetch(
-      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet`
+      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet&_embed=comments`
     );
     if (!res.ok) {
       throw new Error(
@@ -23,7 +23,7 @@ export async function prefetchRecipes() {
 export async function getRecipes(page = 1, pageSize = pageSizeOptions[0]) {
   try {
     const res = await fetch(
-      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}`
+      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments`
     );
     if (!res.ok) {
       throw new Error(
@@ -77,7 +77,7 @@ export async function getFilterRecipes(
   // console.log(queryFilters);
   try {
     const res = await fetch(
-      `${urlport}/recipes?${queryFilters}&_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}`
+      `${urlport}/recipes?${queryFilters}&_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments`
     );
     if (!res.ok) {
       throw new Error(
@@ -133,7 +133,7 @@ export async function getFilterRecipesInf(
 export async function getRecipe(id) {
   try {
     const res = await fetch(
-      `${urlport}/recipes/${id}?&_expand=difficulty&_expand=cuisine&_expand=diet`
+      `${urlport}/recipes/${id}?&_expand=difficulty&_expand=cuisine&_expand=diet&_embed=comments`
     );
     if (!res.ok) {
       throw new Error(`Response status: ${res.status}. Could not get recipe`);

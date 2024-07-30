@@ -33,13 +33,13 @@ const SearchButton = styled(Button)`
   padding: 0.5em;
   flex: auto;
   border: 1px solid var(--color-grey-200);
-  background-color: var(--color-brown-700);
+  background-color: var(--color-brown-600);
   color: white;
   font-size: 0.8em;
   box-shadow: ${buttonShadow.sm_dark};
   &:hover {
     transform: scale(1.02);
-    background-color: var(--color-brown-500);
+    background-color: var(--color-brown-700);
   }
   ${(props) =>
     props.type === "reset" &&

@@ -32,6 +32,16 @@ const GlobalStyles = createGlobalStyle`
     --color-brown-800: #2D2925; //text color 
     --color-brown-900: #0B0A09;
 
+    --color-golden-100: #FAF8E6;
+--color-golden-200: #E9E3B3;
+--color-golden-300: #D9CE80; // like
+--color-golden-400: #C9B94D;
+--color-golden-500: #B9A41A;
+--color-golden-600: #A08B00;
+--color-golden-700: #7A6A00;
+--color-golden-800: #544900; //text color
+--color-golden-900: #2E2900;
+
     --color-beige-000: #fff9f8;
     --color-beige-100: #F9F0E6; /* Very light beige with a hint of warm pink */
     --color-beige-200: #F3E0D1; /* Light beige with a subtle pinkish salmon tone */
@@ -52,18 +62,7 @@ const GlobalStyles = createGlobalStyle`
     --color-red-700: #A51212;
     --color-red-800: #6E0C0C;
     --color-red-900: #370606;
-
-    --color-sky-100: #EFF8FF;
-    --color-sky-200: #E3F1FF;
-    --color-sky-300: #D6E9FF;
-    --color-sky-400: #C9E2FF;
-    --color-sky-500: #BCDAFF;
-    --color-sky-600: #AFD3FF;
-    --color-sky-700: #A2CBFF;
-    --color-sky-800: #95C4FF;
-    --color-sky-900: #88BCFF;
-
-    --color-dark-900: #030C2C;   
+ 
 }
 
 *,
@@ -136,18 +135,16 @@ button, a, span, label {
   user-select: none; /* Standard */
 }
 
+button {
+  :focus {
+    outline: none;
+  }
+}
+
 nav, main, footer{
  padding-inline: 3rem;
  padding-block: 2rem;
 }
-
-/* * {
-  line-height: 1.7;
-} */
-
-  /* main {
-    padding-inline: 20rem;
-  } */
 
 `;
 

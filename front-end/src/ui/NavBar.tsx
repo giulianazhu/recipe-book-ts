@@ -10,7 +10,7 @@ const Container = styled.nav`
   display: flex;
   align-items: center;
   gap: 2em;
-  background-color: var(--color-brown-100);
+  background-color: var(--color-grey-200);
   box-shadow: ${x2boxShadow.md};
   color: var(--color-brown-900);
   opacity: 0.7;

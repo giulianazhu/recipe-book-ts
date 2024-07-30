@@ -26,8 +26,6 @@ export default function Search() {
 
   if (isPending) return <Loader />;
 
-  console.log(cuisines, diets);
-
   const filters = {
     cuisines,
     diets,

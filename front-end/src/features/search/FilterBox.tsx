@@ -8,7 +8,7 @@ const Filter = styled.label<{ $checked?: boolean }>`
   padding: 0.5em 0.8em;
   border-radius: 15px;
   border: 1px solid var(--color-brown-200);
-  color: var(--color-brown-400);
+  color: var(--color-brown-500);
   font-size: 0.9em;
   cursor: pointer;
   box-shadow: ${buttonShadow.sm_dark};
@@ -19,7 +19,7 @@ const Filter = styled.label<{ $checked?: boolean }>`
   ${(props) =>
     props.$checked &&
     css`
-      color: var(--color-brown-700);
+      color: var(--color-brown-900);
       background-color: var(--color-grey-200);
       transform: scale(1.05);
     `}

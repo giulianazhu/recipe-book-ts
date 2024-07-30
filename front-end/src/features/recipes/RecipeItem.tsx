@@ -3,6 +3,9 @@ import { urlport } from "../../services/config";
 import { Button } from "../../styles/BaseStyledComponents/Button";
 import { media, x2boxShadow } from "../../styles/optionStyles";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
+import { useNavigate } from "react-router-dom";
+import { calcArrObjValAvg } from "../../utils/utils";
+import { FaStar } from "react-icons/fa";
 
 export interface RecipeDetailsProps {}
 
@@ -13,6 +16,11 @@ const Container = styled.div`
   grid-template-columns: 200px 1fr;
   border-radius: 15px;
   box-shadow: ${x2boxShadow.md};
+  cursor: pointer;
+  transition: transform 0.5 ease-in-out;
+  &:hover {
+    transform: scale(1.01);
+  }
   ${media.xl} {
     padding: 0.3em;
     grid-template-rows: 200px 1fr;
@@ -47,10 +55,20 @@ const DetailBox = styled(FlexBox)`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled(FlexBox)`
+  justify-content: space-between;
+  align-items: last baseline;
   font-size: 1em;
   font-weight: bold;
   color: var(--color-brown-400);
+  border-bottom: 2px solid var(--color-golden-200);
+`;
+
+export const RatingTag = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 `;
 
 const Description = styled.p`
@@ -68,7 +86,6 @@ const Tag = styled(Button)`
   background-color: var(--color-grey-200);
   font-size: 0.7em;
   box-shadow: none;
-  cursor: initial;
 `;
 
 const InteractiveBox = styled.div`
@@ -83,18 +100,24 @@ const InteractiveBox = styled.div`
     width: 100%;
     max-width: 200px;
     font-size: 0.9em;
+    background-color: var(--color-brown-600);
+    &:hover {
+      background-color: var(--color-brown-700);
+    }
   }
   ${media.xl} {
     padding-block: 0.2em;
     flex: 1 0 auto;
-    ${Button} {
-    }
   }
 `;
 
-export default function RecipeDetails({ recipe }) {
+export default function RecipeItem({ recipe }) {
+  const navigate = useNavigate();
+
+  const avgRating = calcArrObjValAvg(recipe.comments, "rating");
+
   return (
-    <Container>
+    <Container onClick={() => navigate(`/search/${recipe.id}`)}>
       <ImgWrap>
         <img
           src={`${urlport}${recipe.image}`}
@@ -103,7 +126,12 @@ export default function RecipeDetails({ recipe }) {
       </ImgWrap>
       <DescBox>
         <DetailBox>
-          <Title>{recipe.name.toUpperCase()}</Title>
+          <Title as="h1">
+            <p>{recipe.name.toUpperCase()}</p>
+            <RatingTag>
+              {avgRating} <FaStar color="var(--color-golden-300)" />
+            </RatingTag>
+          </Title>
           <Description>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
             voluptates autem fugit quae harum
@@ -115,7 +143,11 @@ export default function RecipeDetails({ recipe }) {
           </TagBox>
         </DetailBox>
         <InteractiveBox>
-          <Button $role="primary" $padding="0.2em 1em">
+          <Button
+            $role="primary"
+            $padding="0.2em 1em"
+            onClick={() => navigate(`/search/${recipe.id}`)}
+          >
             Details
           </Button>
         </InteractiveBox>

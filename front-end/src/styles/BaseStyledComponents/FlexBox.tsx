@@ -19,7 +19,13 @@ export interface FlexBoxProps {
     | "space-between"
     | "space-around"
     | "space-evenly";
-  $items: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
+  $items:
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "stretch"
+    | "baseline"
+    | "last baseline";
   $self: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
   $flex: string;
   $boxShadow: string;
