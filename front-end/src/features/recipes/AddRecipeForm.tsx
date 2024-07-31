@@ -302,7 +302,7 @@ export default function AddRecipeForm() {
                 style={
                   isUploaded
                     ? { backgroundImage: `url(${isUploaded})` }
-                    : { backgroundImage: `url(${"../../public/upload.svg"})` }
+                    : { backgroundImage: `url(${"upload.svg"})` }
                 }
               >
                 <input
