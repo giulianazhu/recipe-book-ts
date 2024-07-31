@@ -6,6 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useFilterRecipes from "../recipes/useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
+import Loader from "../../ui/Loader";
 
 export interface ResultsProps {}
 
@@ -48,12 +49,11 @@ export default function Results() {
 
   const {
     data: { data: recipes, totCount, totPages },
-    isPending,
+    isLoading,
     isError,
     error,
   } = useFilterRecipes(filters, page, pageSize);
 
-  if (isPending) return <h1>Searching...</h1>;
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
@@ -68,7 +68,7 @@ export default function Results() {
       pageSize={pageSize}
       onClickPageSize={handlePageSize}
     >
-      <SearchResults data={recipes} />
+      <SearchResults data={recipes} isPending={isLoading} />
     </Pagination>
   );
 }

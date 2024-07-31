@@ -100,11 +100,11 @@ const PageButton = styled(PageLabel)`
 export interface PaginationProps {}
 
 export default function Pagination({
-  totCount,
-  totPages,
+  totCount = 0,
+  totPages = 0,
   children,
-  page,
-  pageSize,
+  page = 1,
+  pageSize = pageSizeOptions[0],
   onClickPage,
   onClickPageSize,
 }) {
@@ -117,7 +117,7 @@ export default function Pagination({
     <Container>
       <TopPage>
         <PageSizeSelect>
-          <p>Found {totCount} results:</p>
+          <p>Found {totCount || 0} results:</p>
           {pageSizeOptions.map((size) => (
             <PageSizeOption
               key={size}

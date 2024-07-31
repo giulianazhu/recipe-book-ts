@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Uploader } from "../../styles/BaseStyledComponents/Uploader";
-import useFilters from "../search/useFIlters";
+import useFilters from "../search/useFilters";
 import useAddRecipe from "./useAddRecipe";
 import { useForm } from "react-hook-form";
 import { Button } from "../../styles/BaseStyledComponents/Button";
@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Loader from "../../ui/Loader";
 import { buttonShadow, media, x2boxShadow } from "../../styles/optionStyles";
 import { InputError } from "../../styles/BaseStyledComponents/InputError";
+import Error from "../../ui/Error";
 
 const Container = styled.div`
   margin: 1em 15%;
@@ -126,7 +127,13 @@ export default function AddRecipeForm() {
     // mode: "onBlur",
   });
 
-  const { cuisines, diets, difficulties, isPending: isLoading } = useFilters();
+  const {
+    cuisines,
+    diets,
+    difficulties,
+    isPending: isLoading,
+    isError: isFilterError,
+  } = useFilters();
 
   const { mutate: handleAddRecipe, isPending, isError, error } = useAddRecipe();
 
@@ -159,6 +166,8 @@ export default function AddRecipeForm() {
   }
 
   if (isLoading) return <Loader />;
+  if (isFilterError)
+    return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
   return (
     <Container>

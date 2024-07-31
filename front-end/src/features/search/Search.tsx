@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import SearchBox from "./SearchBox";
-import useFilters from "./useFIlters";
+import useFilters from "./useFilters";
 import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
+import Error from "../../ui/Error";
 
 const Container = styled.div`
   display: grid;
@@ -20,6 +21,8 @@ export default function Search() {
     useFilters();
 
   if (isPending) return <Loader />;
+  if (isError)
+    return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
   const filters = {
     cuisines,

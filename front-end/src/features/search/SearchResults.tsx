@@ -1,6 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
 import SearchItem from "./SearchItem";
+import Loader from "../../ui/Loader";
 
 const SearchList = styled.div`
   display: grid;
@@ -14,9 +15,19 @@ const SearchList = styled.div`
   }
 `;
 
+const LoaderWrap = styled.div`
+  height: 80vh;
+`;
+
 export interface RecipeListProps {}
 
-export default function SearchResults({ data: recipes }) {
+export default function SearchResults({ data: recipes, isPending }) {
+  if (isPending)
+    return (
+      <LoaderWrap>
+        <Loader />
+      </LoaderWrap>
+    );
   return (
     <SearchList>
       {recipes.map((recipe) => (

@@ -6,8 +6,7 @@ import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import { Link, Toggler } from "./NavBar";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SearchBox from "../features/search/SearchBox";
-import useFilters from "../features/search/useFIlters";
-import Loader from "./Loader";
+import useFilters from "../features/search/useFilters";
 
 const Container = styled.nav<{ $visible?: boolean }>`
   position: fixed;
@@ -53,7 +52,7 @@ export default function SideBar({ toggle, onToggle }: SideBarProps) {
 
   useOutClick(elementRef, handleOutClick);
 
-  if (isPending) return <Loader />;
+  if (isPending) return <div>Loading...</div>;
 
   const filters = {
     cuisines,

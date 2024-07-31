@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Heading } from "../styles/BaseStyledComponents/Heading";
 import { Button } from "../styles/BaseStyledComponents/Button";
+import { buttonShadow } from "../styles/optionStyles";
 
 const StyledError = styled.div`
   width: 100%;
@@ -29,10 +30,11 @@ const StyledReloadButton = styled(Button)`
   padding: 0.5em 0.8em;
   border: var(--color-red-400) 2px solid;
   background-color: var(--color-red-500);
-  color: var(--color-yellow-100);
+  color: var(--color-brown-100);
+  box-shadow: ${buttonShadow.sm_dark};
   &:hover {
-    border: var(--color-orange-300) 2px solid;
-    background-color: var(--color-orange-500);
+    border: var(--color-red-400) 2px solid;
+    background-color: var(--color-red-400);
   }
 `;
 

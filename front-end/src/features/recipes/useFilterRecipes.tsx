@@ -10,7 +10,7 @@ export default function useFilterRecipes(
 ) {
   const queryClient = useQueryClient();
 
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error, isLoading } = useQuery({
     queryKey: ["recipes", filters, page, pageSize],
     queryFn: () => getFilterRecipes(filters, page, pageSize),
     placeholderData: () => {
@@ -39,5 +39,5 @@ export default function useFilterRecipes(
     queryFn: () => getFilterRecipes(filters, page + 1, pageSize),
   });
 
-  return { data, isPending, isError, error };
+  return { data, isPending, isError, error, isLoading };
 }
