@@ -1,5 +1,11 @@
+import AddRecipeForm from "../features/recipes/AddRecipeForm";
+
 export interface AddPageProps {}
 
 export default function AddPage() {
-  return <main>AddPage</main>;
+  return (
+    <main>
+      <AddRecipeForm />
+    </main>
+  );
 }

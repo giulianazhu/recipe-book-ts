@@ -91,7 +91,7 @@ export default function NavBar({ onToggle, view }: NavBarProps) {
         Add Recipe
       </Link>
       <Link to="/search" $view={view}>
-        Search_Inf
+        Dummy
       </Link>
     </Container>
   );

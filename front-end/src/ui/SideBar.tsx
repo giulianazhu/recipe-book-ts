@@ -74,7 +74,7 @@ export default function SideBar({ toggle, onToggle }: SideBarProps) {
             Add Recipe
           </Link>
           <Link to="/search" onClick={onToggle}>
-            Search
+            Dummy
           </Link>
         </FlexBox>
       </FlexBox>

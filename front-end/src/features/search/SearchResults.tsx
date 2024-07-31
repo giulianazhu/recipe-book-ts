@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { media } from "../../styles/optionStyles";
-import SearchItem from "../recipes/SearchItem";
+import SearchItem from "./SearchItem";
 
 const SearchList = styled.div`
   display: grid;
