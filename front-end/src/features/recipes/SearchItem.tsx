@@ -5,32 +5,30 @@ import { media, x2boxShadow } from "../../styles/optionStyles";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { useNavigate } from "react-router-dom";
 import { calcArrObjValAvg } from "../../utils/utils";
-import { FaStar } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
 
 export interface RecipeDetailsProps {}
 
-const Container = styled.div`
+const Container = styled(FlexBox)`
   padding: 0.5em;
   height: 100%;
-  display: grid;
-  grid-template-columns: 200px 1fr;
   border-radius: 15px;
   box-shadow: ${x2boxShadow.md};
   cursor: pointer;
-  transition: transform 0.5 ease-in-out;
+  transition: transform 0.2s ease-out;
   &:hover {
     transform: scale(1.01);
   }
   ${media.xl} {
     padding: 0.3em;
-    grid-template-rows: 200px 1fr;
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 `;
 
 const ImgWrap = styled.div`
-  border-radius: 15px;
   overflow: hidden;
+  flex: 0 0 200px;
+  border-radius: 15px;
   & img {
     width: 100%;
     height: 100%;
@@ -39,33 +37,30 @@ const ImgWrap = styled.div`
 `;
 
 const DescBox = styled(FlexBox)`
-  padding-inline: 1em;
+  flex: 1 1 auto;
   ${media.xl} {
     padding: 0.5em;
     flex-direction: column;
   }
 `;
 
-const DetailBox = styled(FlexBox)`
+const DetailsBox = styled(FlexBox)`
+  flex: 1 1 auto;
   flex-direction: column;
-  justify-content: space-between;
-  flex: 1 1 300px;
-  ${media.xl} {
-    flex: initial;
-  }
 `;
 
 const Title = styled(FlexBox)`
   justify-content: space-between;
-  align-items: last baseline;
+  align-items: baseline;
   font-size: 1em;
-  font-weight: bold;
   color: var(--color-brown-400);
-  border-bottom: 2px solid var(--color-golden-200);
+  border-bottom: 1px solid var(--color-golden-200);
+  & span {
+    font-weight: normal;
+  }
 `;
 
-export const RatingTag = styled.span`
-  display: flex;
+export const RatingTag = styled(FlexBox)`
   justify-content: center;
   align-items: center;
   gap: 0.5em;
@@ -88,30 +83,44 @@ const Tag = styled(Button)`
   box-shadow: none;
 `;
 
-const InteractiveBox = styled.div`
-  padding-block: 0.4em;
+const InteractiveBox = styled(FlexBox)`
+  padding-inline: 0.5em;
   margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: justify-between;
-  flex: 1 1 200px;
-  ${Button} {
-    align-self: flex-end;
-    width: 100%;
-    max-width: 200px;
-    font-size: 0.9em;
-    background-color: var(--color-brown-600);
-    &:hover {
-      background-color: var(--color-brown-700);
-    }
-  }
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
   ${media.xl} {
     padding-block: 0.2em;
-    flex: 1 0 auto;
+    width: 100%;
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
-export default function RecipeItem({ recipe }) {
+const InteractiveIcon = styled(FlexBox)`
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+`;
+
+const ItemButton = styled(Button)`
+  padding: 0.2em 1em;
+  width: 100%;
+  max-width: 150px;
+  font-size: 0.9em;
+  background-color: var(--color-brown-300);
+  &:hover {
+    background-color: var(--color-brown-500);
+  }
+  ${media.xl} {
+    max-width: 100px;
+  }
+`;
+
+export default function SearchItem({ data: recipe }) {
   const navigate = useNavigate();
 
   const avgRating = calcArrObjValAvg(recipe.comments, "rating");
@@ -125,7 +134,7 @@ export default function RecipeItem({ recipe }) {
         />
       </ImgWrap>
       <DescBox>
-        <DetailBox>
+        <DetailsBox>
           <Title as="h1">
             <p>{recipe.name.toUpperCase()}</p>
             <RatingTag>
@@ -141,15 +150,22 @@ export default function RecipeItem({ recipe }) {
             <Tag>{recipe.diet.name}</Tag>
             <Tag>{recipe.difficulty.name}</Tag>
           </TagBox>
-        </DetailBox>
+        </DetailsBox>
         <InteractiveBox>
-          <Button
+          <InteractiveIcon>
+            <FaBookmark
+              onClick={(e) => {
+                alert("Placeholder");
+                e.stopPropagation();
+              }}
+            />
+          </InteractiveIcon>
+          <ItemButton
             $role="primary"
-            $padding="0.2em 1em"
             onClick={() => navigate(`/search/${recipe.id}`)}
           >
             Details
-          </Button>
+          </ItemButton>
         </InteractiveBox>
       </DescBox>
     </Container>

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { media } from "./optionStyles";
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -144,6 +145,9 @@ button {
 nav, main, footer{
  padding-inline: 3rem;
  padding-block: 2rem;
+ ${media.md}{
+  padding-inline: 2rem;
+ }
 }
 
 `;

@@ -11,12 +11,14 @@ import SearchInput from "../../ui/SearchInput";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
 
 const Container = styled(FlexBox)<{ $type?: string }>`
-  padding-inline: 0.2em;
+  padding-inline: 1em;
   width: 100%;
   height: max-content;
+  font-size: 1.3rem;
   ${(props) =>
     props.$type === "main" &&
     css`
+      border-right: 2px solid var(--color-grey-200);
       ${media.md} {
         display: none;
       }

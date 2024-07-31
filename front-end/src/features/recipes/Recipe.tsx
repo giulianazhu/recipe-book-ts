@@ -2,22 +2,13 @@ import { useParams } from "react-router-dom";
 import useRecipe from "./useRecipe";
 import { urlport } from "../../services/config";
 import { styled } from "styled-components";
-import { calcArrObjValAvg, formatDate } from "../../utils/utils";
+import { calcArrObjValAvg } from "../../utils/utils";
 import Loader from "../../ui/Loader";
 import Error from "../../ui/Error";
-import {
-  boxShadow,
-  buttonShadow,
-  media,
-  x2boxShadow,
-} from "../../styles/optionStyles";
+import { buttonShadow, media, x2boxShadow } from "../../styles/optionStyles";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
 import { FaStar } from "react-icons/fa";
-import StarRating from "../../ui/StarRating";
-import { Button } from "../../styles/BaseStyledComponents/Button";
-import CommentForm from "../comments/CommentForm";
-import CommentList from "../comments/CommentSection";
 import CommentSection from "../comments/CommentSection";
 
 const Container = styled.div`
@@ -32,13 +23,13 @@ const Container = styled.div`
     width: 90%;
   }
   ${media.sm} {
-    width: 98%;
+    width: 99%;
   }
 `;
 
 const ImgWrap = styled.div`
   width: 100%;
-  height: 30%;
+  height: 400px;
   & img {
     width: 100%;
     height: 100%;

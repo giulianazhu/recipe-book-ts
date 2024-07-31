@@ -29,6 +29,7 @@ export interface FlexBoxProps {
   $self: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
   $flex: string;
   $boxShadow: string;
+  // [key: string]: boolean | string;
 }
 
 export const FlexBox = styled.div<Partial<FlexBoxProps>>`

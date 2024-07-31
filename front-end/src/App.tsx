@@ -5,9 +5,9 @@ import HomePage from "./pages/HomePage";
 import AppLayout from "./ui/AppLayout";
 import AddPage from "./pages/AddPage";
 import SearchPage from "./pages/SearchPage";
-import RecipeList from "./features/recipes/RecipeList";
 import RecipePage from "./pages/RecipePage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ResultsPage from "./pages/ResultsPage";
 
 function App() {
   const queryClient = new QueryClient({
@@ -29,7 +29,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="add" element={<AddPage />} />
             <Route element={<SearchPage />}>
-              <Route path="search" element={<RecipeList />} />
+              <Route path="search" element={<ResultsPage />} />
             </Route>
             <Route path="search/:id" element={<RecipePage />} />
           </Route>
