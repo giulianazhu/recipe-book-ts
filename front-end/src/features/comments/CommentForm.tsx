@@ -8,6 +8,7 @@ import useAddComment from "./useAddComment";
 import { Controller, useForm } from "react-hook-form";
 import Error from "../../ui/Error";
 import { InputError } from "../../styles/BaseStyledComponents/InputError";
+import { CommentFormDataType } from "../../types/state";
 
 const Textarea = styled.textarea`
   padding: 0.5em;
@@ -56,7 +57,7 @@ export default function CommentForm({ id }) {
     reset,
   } = useForm();
 
-  function onSubmit(data) {
+  function onSubmit(data: CommentFormDataType) {
     data.date = new Date().toISOString();
     data.rating = parseInt(data.rating);
     console.log("data sent", JSON.stringify(data));

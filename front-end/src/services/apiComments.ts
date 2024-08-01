@@ -1,6 +1,13 @@
+import { ApiInfiniteResults } from "../types/apidata";
+import { CommentType } from "../types/data";
+import { CommentFormDataType, PageSizeType, PageType } from "../types/state";
 import { urlport } from "./config";
 
-export async function getRecipeCommentsInf(recipeId, page, pageSize) {
+export async function getRecipeCommentsInf(
+  recipeId: string,
+  page: PageType,
+  pageSize: PageSizeType
+): Promise<ApiInfiniteResults<CommentType> | undefined> {
   try {
     const res = await fetch(
       `${urlport}/comments?recipeId=${recipeId}&_page=${page}&_limit=${pageSize}`
@@ -11,22 +18,26 @@ export async function getRecipeCommentsInf(recipeId, page, pageSize) {
       );
     }
     const data = await res.json();
-    const totCount = res.headers.get("X-Total-Count");
+    const totCount = parseInt(res.headers.get("X-Total-Count") || "0");
     const totPages = Math.ceil(totCount / pageSize);
 
-    console.log(data);
-
-    return {
+    const results: ApiInfiniteResults<CommentType> = {
       data,
       hasMore: page < totPages,
       totCount,
     };
+
+    return results;
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error("Could not fetch recipe comments");
+    }
   }
 }
 
-export async function addComment(recipeId, data) {
+export async function addComment(recipeId: string, data: CommentFormDataType) {
   try {
     const res = await fetch(`${urlport}/recipes/${recipeId}/comments`, {
       method: "POST",
@@ -36,12 +47,18 @@ export async function addComment(recipeId, data) {
       body: JSON.stringify(data),
     });
     if (!res.ok) {
-      throw new Error(`Response status: ${res.status}. Could not add comments`);
+      throw new Error(
+        `Response status: ${res.status}. Could not leave a review`
+      );
     }
     const result = await res.json();
     console.log("Success:", result);
   } catch (err) {
-    console.error(err.message);
+    if (err instanceof Error) {
+      console.error(err.message);
+    } else {
+      console.error("Could not leave a review");
+    }
   }
 }
 
