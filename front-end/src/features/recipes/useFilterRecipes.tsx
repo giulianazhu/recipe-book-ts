@@ -1,10 +1,17 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getFilterRecipes } from "../../services/apiRecipes";
 import { pageSizeOptions } from "../../utils/constants";
-import { calcPageItems, filterByProperties } from "../../utils/utils";
+import {
+  calcPageItems,
+  filterByProperties,
+  isEmptyObj,
+} from "../../utils/utils";
+import { FiltersType } from "../../types/state";
+import { ApiPaginatedResults } from "../../types/apidata";
+import { ExpandedRecipeType, RecipeType } from "../../types/data";
 
 export default function useFilterRecipes(
-  filters = "all",
+  filters: FiltersType = {},
   page = 1,
   pageSize = pageSizeOptions[0]
 ) {
@@ -16,12 +23,12 @@ export default function useFilterRecipes(
     placeholderData: () => {
       // console.log("Using placeholder data...");
 
-      const recipes = queryClient.getQueryData(["recipes"]) ?? [];
+      const recipes: RecipeType[] = queryClient.getQueryData(["recipes"]) ?? [];
       const maxItemsPerPage = calcPageItems(page, pageSize);
 
       let data;
 
-      if (!filters || filters === "all") {
+      if (isEmptyObj(filters)) {
         data = recipes.slice(0, maxItemsPerPage);
       } else {
         data = filterByProperties(recipes, filters).slice(0, maxItemsPerPage);
@@ -30,7 +37,13 @@ export default function useFilterRecipes(
       const totCount = data.length;
       const totPages = data.length / pageSize;
 
-      return { data, totCount, totPages };
+      const results: ApiPaginatedResults<ExpandedRecipeType> = {
+        data,
+        totCount,
+        totPages,
+      };
+
+      return results;
     },
   });
 

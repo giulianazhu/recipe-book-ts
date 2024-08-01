@@ -1,6 +1,11 @@
 import { ApiPaginatedResults } from "../types/apidata";
 import { ExpandedRecipeType, RecipeType } from "../types/data";
-import { FiltersObjType, PageSizeType, PageType } from "../types/state";
+import {
+  FiltersObjType,
+  FiltersType,
+  PageSizeType,
+  PageType,
+} from "../types/state";
 import { pageSizeOptions } from "../utils/constants";
 import { formatQueries, isEmptyObj } from "../utils/utils";
 import { urlport } from "./config";
@@ -64,7 +69,7 @@ export async function getRecipes(
 }
 
 export async function getFilterRecipes(
-  filters: FiltersObjType,
+  filters: FiltersType,
   page: PageType = 1,
   pageSize: PageSizeType = pageSizeOptions[0]
 ): Promise<ApiPaginatedResults<ExpandedRecipeType> | undefined> {

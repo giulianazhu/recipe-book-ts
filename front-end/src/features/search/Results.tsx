@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import Pagination from "../../ui/Pagination";
 import SearchResults from "./SearchResults";
 import { pageSizeOptions } from "../../utils/constants";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import useFilterRecipes from "../recipes/useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
-import Loader from "../../ui/Loader";
 
 export interface ResultsProps {}
 

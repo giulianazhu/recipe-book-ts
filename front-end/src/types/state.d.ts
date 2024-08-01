@@ -1,11 +1,9 @@
 import { CommentType, RecipeType } from "./data";
 
-export interface FiltersObjType
-  extends Pick<RecipeType, "cuisineId" | dietId | "difficultyId"> {
+export interface FiltersType
+  extends Partial<Pick<RecipeType, "cuisineId" | "dietId" | "difficultyId">> {
   q?: string;
 }
-
-export type FiltersType = FiltersObjType | "all";
 
 export type PageType = number;
 
