@@ -155,6 +155,8 @@ export default function AddRecipeForm() {
     }
     formData.set("image", data.image[0]);
 
+    console.log(data.image[0]);
+
     handleAddRecipe(formData, {
       onSuccess: (data) => {
         reset();

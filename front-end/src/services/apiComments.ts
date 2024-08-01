@@ -1,36 +1,5 @@
 import { urlport } from "./config";
 
-//not needed
-export async function getComments() {
-  try {
-    const res = await fetch(`${urlport}/comments`);
-    if (!res.ok) {
-      throw new Error(
-        `Response status: ${res.status}. Could not fetch comments`
-      );
-    }
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error(err.message);
-  }
-}
-
-export async function getRecipeComments(recipeId) {
-  try {
-    const res = await fetch(`${urlport}/comments?recipeId=${recipeId}`);
-    if (!res.ok) {
-      throw new Error(
-        `Response status: ${res.status}. Could not fetch recipe comments`
-      );
-    }
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error(err.message);
-  }
-}
-
 export async function getRecipeCommentsInf(recipeId, page, pageSize) {
   try {
     const res = await fetch(
@@ -76,37 +45,67 @@ export async function addComment(recipeId, data) {
   }
 }
 
-export async function updateComment(id, data) {
-  try {
-    const res = await fetch(`${urlport}/comments/${id}`, {
-      method: "PUT",
-      body: data,
-    });
-    if (!res.ok) {
-      throw new Error(
-        `Response status: ${res.status}. Could not update comments`
-      );
-    }
-    const result = await res.json();
-    return { status: res.status, result };
-  } catch (err) {
-    console.error(err.message);
-  }
-}
+// export async function getComments() {
+//   try {
+//     const res = await fetch(`${urlport}/comments`);
+//     if (!res.ok) {
+//       throw new Error(
+//         `Response status: ${res.status}. Could not fetch comments`
+//       );
+//     }
+//     const data = await res.json();
+//     return data;
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
 
-export async function deleteComment(id) {
-  try {
-    const res = await fetch(`${urlport}/comments/${id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      throw new Error(
-        `Response status: ${res.status}. Could not delete comments`
-      );
-    }
-    const result = await res.json();
-    return { status: res.status, result };
-  } catch (err) {
-    console.error(err.message);
-  }
-}
+// export async function getRecipeComments(recipeId) {
+//   try {
+//     const res = await fetch(`${urlport}/comments?recipeId=${recipeId}`);
+//     if (!res.ok) {
+//       throw new Error(
+//         `Response status: ${res.status}. Could not fetch recipe comments`
+//       );
+//     }
+//     const data = await res.json();
+//     return data;
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
+
+// export async function updateComment(id, data) {
+//   try {
+//     const res = await fetch(`${urlport}/comments/${id}`, {
+//       method: "PUT",
+//       body: data,
+//     });
+//     if (!res.ok) {
+//       throw new Error(
+//         `Response status: ${res.status}. Could not update comments`
+//       );
+//     }
+//     const result = await res.json();
+//     return { status: res.status, result };
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
+
+// export async function deleteComment(id) {
+//   try {
+//     const res = await fetch(`${urlport}/comments/${id}`, {
+//       method: "DELETE",
+//     });
+//     if (!res.ok) {
+//       throw new Error(
+//         `Response status: ${res.status}. Could not delete comments`
+//       );
+//     }
+//     const result = await res.json();
+//     return { status: res.status, result };
+//   } catch (err) {
+//     console.error(err.message);
+//   }
+// }
