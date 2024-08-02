@@ -58,7 +58,7 @@ export default function Results() {
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
-  console.log(recipes);
+  // console.log(recipes);
 
   return (
     <Pagination

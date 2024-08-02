@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Uploader } from "../../styles/BaseStyledComponents/Uploader";
-import useFilters from "../search/useFilters";
 import useAddRecipe from "./useAddRecipe";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "../../styles/BaseStyledComponents/Button";
@@ -13,6 +12,7 @@ import Error from "../../ui/Error";
 import * as yup from "yup";
 import { RecipeFormDataType } from "../../types/state";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useFilters from "../search/useFilters";
 
 const Container = styled.div`
   margin: 1em 15%;

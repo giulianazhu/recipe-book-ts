@@ -77,7 +77,7 @@ export default function CommentForm({ id }: CommentFormProps) {
 
   const onSubmit: SubmitHandler<CommentFormDataType> = (data) => {
     data.date = new Date().toISOString();
-    console.log("data sent", JSON.stringify(data));
+    // console.log("data sent", JSON.stringify(data));
     handleAddComment(data, {
       onSuccess: () => {
         reset();
@@ -94,7 +94,7 @@ export default function CommentForm({ id }: CommentFormProps) {
       <Controller
         control={control}
         name="rating"
-        // rules={{ required: "Rating is required" }} validated in yup
+        // rules={{ required: "Rating is required" }} validation in yup
         render={({ field: { onChange } }) => (
           <StarRating
             onChange={onChange}

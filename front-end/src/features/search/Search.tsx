@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import SearchBox from "./SearchBox";
-import useFilters from "./useFilters";
 import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
 import Error from "../../ui/Error";
+import useFilters from "./useFilters";
 
 const Container = styled.div`
   display: grid;
