@@ -7,11 +7,6 @@ import useFilterRecipes from "./useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
 import { FiltersType } from "../../types/state";
-import { UsePaginatedReturns } from "../../types/hookdata";
-import { ApiPaginatedResults } from "../../types/apidata";
-import { ExpandedRecipeType } from "../../types/data";
-
-export interface ResultsProps {}
 
 export default function Results() {
   const [page, setPage] = useState(1);
@@ -42,21 +37,19 @@ export default function Results() {
     [searchParams]
   );
 
-  const filters: Partial<FiltersType> = {};
+  const filters: FiltersType = {};
 
   for (const [key, value] of searchParams.entries()) {
     if (value && value !== "null") {
-      (filters as Partial<FiltersType>)[key as keyof FiltersType] = value;
+      (filters as FiltersType)[key as keyof FiltersType] = value;
     } else continue;
   }
 
-  const {
-    data,
-    isLoading,
-    isError,
-    error,
-  }: UsePaginatedReturns<ApiPaginatedResults<ExpandedRecipeType>> =
-    useFilterRecipes(filters, page, pageSize);
+  const { data, isLoading, isError, error } = useFilterRecipes(
+    filters,
+    page,
+    pageSize
+  );
 
   const recipes = data?.data;
   const totCount = data?.totCount;

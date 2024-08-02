@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
 import SearchItem from "./SearchItem";
 import Loader from "../../ui/Loader";
+import { ExpandedRecipeType } from "../../types/data";
 
 const SearchList = styled.div`
   display: grid;
@@ -19,9 +20,15 @@ const LoaderWrap = styled.div`
   height: 80vh;
 `;
 
-export interface RecipeListProps {}
+export interface RecipeListProps {
+  data: ExpandedRecipeType[] | undefined;
+  isPending: boolean;
+}
 
-export default function SearchResults({ data: recipes, isPending }) {
+export default function SearchResults({
+  data: recipes,
+  isPending,
+}: RecipeListProps) {
   if (isPending)
     return (
       <LoaderWrap>
@@ -30,7 +37,7 @@ export default function SearchResults({ data: recipes, isPending }) {
     );
   return (
     <SearchList>
-      {recipes.map((recipe) => (
+      {recipes?.map((recipe) => (
         <SearchItem data={recipe} key={recipe.id} />
       ))}
     </SearchList>

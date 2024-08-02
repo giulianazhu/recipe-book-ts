@@ -3,6 +3,7 @@ import { CommentType, RecipeType } from "./data";
 export interface FiltersType
   extends Partial<Pick<RecipeType, "cuisineId" | "dietId" | "difficultyId">> {
   q?: string;
+  [key: string]: typeof FiltersType;
 }
 
 export type PageType = number;

@@ -11,7 +11,7 @@ const StyledSearchInput = styled.span`
   display: flex;
   border-radius: 15px;
   background-color: var(--color-grey-200);
-  box-shadow: ${buttonShadow.smLight};
+  box-shadow: ${buttonShadow.sm_light};
   & input {
     all: initial;
     padding: 0.5em;
@@ -36,10 +36,10 @@ const StyledSearchInput = styled.span`
 
 export interface SearchInputProps {
   name: string;
-  onChange: (e) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   id: string | number;
   value: string;
-  onSubmit: () => void;
+  onSubmit?: () => void;
   label: string;
 }
 

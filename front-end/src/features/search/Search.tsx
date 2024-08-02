@@ -5,8 +5,6 @@ import useFilters from "./useFilters";
 import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
 import Error from "../../ui/Error";
-import { UseMultipleDataReturns } from "../../types/hookdata";
-import { CategoryType } from "../../types/data";
 
 const Container = styled.div`
   display: grid;
@@ -30,8 +28,6 @@ export default function Search() {
     cuisines,
     diets,
     difficulties,
-    isError,
-    error,
   };
 
   return (
