@@ -8,7 +8,7 @@ import {
 } from "../../utils/utils";
 import { FiltersType } from "../../types/state";
 import { ApiPaginatedResults } from "../../types/apidata";
-import { ExpandedRecipeType, RecipeType } from "../../types/data";
+import { ExpandedRecipeType } from "../../types/data";
 
 export default function useFilterRecipes(
   filters: FiltersType = {},
@@ -23,7 +23,8 @@ export default function useFilterRecipes(
     placeholderData: () => {
       // console.log("Using placeholder data...");
 
-      const recipes: RecipeType[] = queryClient.getQueryData(["recipes"]) ?? [];
+      const recipes: ExpandedRecipeType[] =
+        queryClient.getQueryData(["recipes"]) ?? [];
       const maxItemsPerPage = calcPageItems(page, pageSize);
 
       let data;

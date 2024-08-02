@@ -1,7 +1,7 @@
-import { ApiFiltersResults } from "../types/apidata";
+import { ApiCategoriesResults } from "../types/apidata";
 import { urlport } from "./config";
 
-export async function getCuisines(): Promise<ApiFiltersResults | undefined> {
+export async function getCuisines(): Promise<ApiCategoriesResults | undefined> {
   try {
     const res = await fetch(`${urlport}/cuisines`);
     if (!res.ok) {
@@ -9,7 +9,7 @@ export async function getCuisines(): Promise<ApiFiltersResults | undefined> {
         `Response status: ${res.status}. Could not fetch cuisines data`
       );
     }
-    const data: ApiFiltersResults = await res.json();
+    const data: ApiCategoriesResults = await res.json();
     return data;
   } catch (err) {
     if (err instanceof Error) {
@@ -20,7 +20,7 @@ export async function getCuisines(): Promise<ApiFiltersResults | undefined> {
   }
 }
 
-export async function getDiets(): Promise<ApiFiltersResults | undefined> {
+export async function getDiets(): Promise<ApiCategoriesResults | undefined> {
   try {
     const res = await fetch(`${urlport}/diets`);
     if (!res.ok) {
@@ -28,7 +28,7 @@ export async function getDiets(): Promise<ApiFiltersResults | undefined> {
         `Response status: ${res.status}. Could not fetch diets data`
       );
     }
-    const data: ApiFiltersResults = await res.json();
+    const data: ApiCategoriesResults = await res.json();
     return data;
   } catch (err) {
     if (err instanceof Error) {
@@ -40,7 +40,7 @@ export async function getDiets(): Promise<ApiFiltersResults | undefined> {
 }
 
 export async function getDifficulties(): Promise<
-  ApiFiltersResults | undefined
+  ApiCategoriesResults | undefined
 > {
   try {
     const res = await fetch(`${urlport}/difficulties`);
@@ -49,7 +49,7 @@ export async function getDifficulties(): Promise<
         `Response status: ${res.status}. Could not fetch difficulties data`
       );
     }
-    const data: ApiFiltersResults = await res.json();
+    const data: ApiCategoriesResults = await res.json();
     return data;
   } catch (err) {
     if (err instanceof Error) {
