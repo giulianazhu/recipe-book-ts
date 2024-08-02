@@ -8,7 +8,7 @@ export const StyledUploader = styled.div<{ $image: string | null }>`
   overflow: hidden;
   border-radius: 15px;
   background-color: var(--color-brown-200);
-  background-image: url("../../public/upload.svg");
+  background-image: url("upload.svg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

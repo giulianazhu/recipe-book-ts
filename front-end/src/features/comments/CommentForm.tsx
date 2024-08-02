@@ -5,9 +5,12 @@ import { buttonShadow } from "../../styles/optionStyles";
 import StarRating from "../../ui/StarRating";
 import styled from "styled-components";
 import useAddComment from "./useAddComment";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Error from "../../ui/Error";
 import { InputError } from "../../styles/BaseStyledComponents/InputError";
+import { CommentFormDataType } from "../../types/state";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Textarea = styled.textarea`
   padding: 0.5em;
@@ -38,9 +41,19 @@ const FormButton = styled(Button)`
   }
 `;
 
-export interface CommentFormProps {}
+export interface CommentFormProps {
+  id: string;
+}
 
-export default function CommentForm({ id }) {
+const schema = yup
+  .object()
+  .shape({
+    rating: yup.number().required("*Rating is required"),
+    comment: yup.string(),
+  })
+  .required();
+
+export default function CommentForm({ id }: CommentFormProps) {
   const {
     mutate: handleAddComment,
     isPending,
@@ -54,18 +67,23 @@ export default function CommentForm({ id }) {
     control,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<CommentFormDataType>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      rating: undefined,
+      comment: "",
+    },
+  });
 
-  function onSubmit(data) {
+  const onSubmit: SubmitHandler<CommentFormDataType> = (data) => {
     data.date = new Date().toISOString();
-    data.rating = parseInt(data.rating);
     console.log("data sent", JSON.stringify(data));
     handleAddComment(data, {
       onSuccess: () => {
         reset();
       },
     });
-  }
+  };
 
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
@@ -76,13 +94,12 @@ export default function CommentForm({ id }) {
       <Controller
         control={control}
         name="rating"
-        rules={{ required: "Rating is required" }}
-        render={({ field: { onChange, value } }) => (
+        // rules={{ required: "Rating is required" }} validated in yup
+        render={({ field: { onChange } }) => (
           <StarRating
             onChange={onChange}
             name="rating"
             isPending={isPending}
-            value={value}
             color="var(--color-golden-300)"
             size="large"
           />
@@ -92,7 +109,6 @@ export default function CommentForm({ id }) {
       <InputError>{errors?.rating && errors?.rating?.message}</InputError>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Textarea
-          name="comment"
           id="comment"
           rows={5}
           {...register("comment", { disabled: isPending })}

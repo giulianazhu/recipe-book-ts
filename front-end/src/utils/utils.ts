@@ -1,6 +1,7 @@
-import { Filters, Recipe } from "../types/data";
+import { ExpandedRecipeType } from "../types/data";
+import { FiltersType } from "../types/state";
 
-export function formatQueries(filters: Filters) {
+export function formatQueries(filters: FiltersType) {
   const queryFilters = new URLSearchParams();
   for (const filter in filters) {
     const query = filters[filter];
@@ -11,17 +12,15 @@ export function formatQueries(filters: Filters) {
   return queryFilters.toString();
 }
 
-interface NumericObject {
-  [key: string]: number;
-}
-
-export function calcArrObjValAvg<T extends NumericObject>(
-  arr: T[],
-  property: keyof T
+export function calcArrObjValAvg<DataType>(
+  arr: DataType[],
+  property: keyof DataType
 ) {
   let avg = 0;
   for (const el of arr) {
-    avg += el[property];
+    if (typeof el[property] === "number") {
+      avg += el[property];
+    }
   }
   avg /= arr.length;
   return typeof avg === "number" && !isNaN(avg) ? avg.toFixed(1) : 0;
@@ -33,10 +32,15 @@ export function calcPageItems(page: number, pageSize: number) {
   return tot;
 }
 
-export function filterByProperties(data: Recipe[], filtersObj: Filters) {
+export function filterByProperties(
+  data: ExpandedRecipeType[],
+  filtersObj: FiltersType
+) {
   const filteredData = data.filter((recipe) => {
     return Object.keys(filtersObj).every((filterKey) => {
-      return recipe[filterKey] === filtersObj[filterKey];
+      return (
+        recipe[filterKey as keyof ExpandedRecipeType] === filtersObj[filterKey]
+      );
     });
   });
   return filteredData;
@@ -54,7 +58,7 @@ export function capitalize(str: string) {
   return str[0].toUpperCase() + str.slice(1);
 }
 
-export function formatDate(isoString) {
+export function formatDate(isoString: string) {
   const date = new Date(isoString);
 
   const day = String(date.getUTCDate()).padStart(2, "0");

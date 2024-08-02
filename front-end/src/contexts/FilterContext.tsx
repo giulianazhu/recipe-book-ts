@@ -1,16 +1,22 @@
 import { createContext, useReducer } from "react";
 import { scrollTop } from "../utils/utils";
-import { FiltersState } from "../types/data";
+import { FiltersType } from "../types/state";
 
-export const FilterContext = createContext<object | null>(null);
+export interface FilterContextType {
+  filtersState: FiltersType;
+  handleFilter: (key: string, value: number | string) => void;
+  resetFilters: () => void;
+}
+
+export const FilterContext = createContext<FilterContextType | null>(null);
+
+const initialState: FiltersType = {};
 
 type ActionType =
-  | { type: "setFilter"; payload: { key: string; value: number } }
+  | { type: "setFilter"; payload: { key: string; value: number | string } }
   | { type: "resetFilters" };
 
-const initialState: FiltersState = {};
-
-function reducer(state: FiltersState, action: ActionType) {
+function reducer(state: FiltersType, action: ActionType): FiltersType {
   switch (action.type) {
     case "setFilter":
       return {
@@ -18,7 +24,7 @@ function reducer(state: FiltersState, action: ActionType) {
         [action.payload.key]: action.payload.value,
       };
     case "resetFilters":
-      return { initialState };
+      return { ...initialState };
     default:
       throw new Error("Unknown reducer action");
   }
@@ -31,7 +37,7 @@ interface FilterProviderProps {
 export default function FilterProvider({ children }: FilterProviderProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function setFilter(key: string, value: number) {
+  function handleFilter(key: string, value: number | string) {
     dispatch({
       type: "setFilter",
       payload: { key, value },
@@ -47,7 +53,7 @@ export default function FilterProvider({ children }: FilterProviderProps) {
     <FilterContext.Provider
       value={{
         filtersState: state,
-        setFilter,
+        handleFilter,
         resetFilters,
       }}
     >

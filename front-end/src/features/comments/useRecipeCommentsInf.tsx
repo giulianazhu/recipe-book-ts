@@ -1,12 +1,11 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getRecipeCommentsInf } from "../../services/apiComments";
 
-export interface useRecipeCommentsProps {}
-
-export default function useRecipeCommentsInf(recipeId, page = 1, pageSize = 3) {
+export default function useRecipeCommentsInf(recipeId: string, pageSize = 3) {
   const {
     data,
     isPending,
+    isSuccess,
     isError,
     error,
     fetchNextPage,
@@ -15,21 +14,21 @@ export default function useRecipeCommentsInf(recipeId, page = 1, pageSize = 3) {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["comments", recipeId, pageSize],
-    queryFn: ({ pageParam = page }) =>
+    queryFn: ({ pageParam }) =>
       getRecipeCommentsInf(recipeId, pageParam, pageSize),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
-      if (lastPage.hasMore) {
+      if (lastPage?.hasMore) {
         return pages.length + 1;
       } else {
         return undefined;
       }
     },
   });
-
   return {
     data,
     isPending,
+    isSuccess,
     isError,
     error,
     fetchNextPage,

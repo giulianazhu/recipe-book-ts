@@ -3,6 +3,7 @@ import useFilterContext from "../../contexts/useFilterContext";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
 import { buttonShadow } from "../../styles/optionStyles";
+import { CategoryType } from "../../types/data";
 
 const Filter = styled.label<{ $checked?: boolean }>`
   padding: 0.5em 0.8em;
@@ -34,31 +35,39 @@ const Filter = styled.label<{ $checked?: boolean }>`
   }
 `;
 
-export interface FilterBoxProps {}
+export interface FilterBoxProps {
+  filterOptions: CategoryType[] | undefined;
+  filterType: string;
+  fieldName: string;
+}
 
-export default function FilterBox({ options, label, name }) {
-  const { filtersState, setFilter } = useFilterContext();
+export default function FilterBox({
+  filterOptions,
+  filterType,
+  fieldName,
+}: FilterBoxProps) {
+  const { filtersState, handleFilter } = useFilterContext();
 
   return (
     <FlexBox $direction="column" $padding="0.5em 0">
       <Heading as="h5" $color="var(--color-brown-500)">
-        {label}
+        {filterType}
       </Heading>
       <FlexBox $flow="wrap" $padding="0">
-        {options.map((option) => (
+        {filterOptions?.map((option) => (
           <Filter
             htmlFor={option.name}
             key={option.name}
-            $checked={filtersState[name] === option.id}
+            $checked={filtersState[fieldName] === option.id}
           >
             {option.name}
             <input
               type="radio"
               id={option.name}
-              name={name}
+              name={fieldName}
               value={option.id}
-              checked={filtersState[name] === option.id}
-              onChange={() => setFilter(name, option.id)}
+              checked={filtersState[fieldName] === option.id}
+              onChange={() => handleFilter(fieldName, option.id)}
             />
           </Filter>
         ))}

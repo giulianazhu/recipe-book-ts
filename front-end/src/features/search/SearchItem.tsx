@@ -5,7 +5,8 @@ import { media, x2boxShadow } from "../../styles/optionStyles";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { useNavigate } from "react-router-dom";
 import { calcArrObjValAvg } from "../../utils/utils";
-import { FaBookmark, FaRegBookmark, FaStar } from "react-icons/fa";
+import { FaBookmark, FaStar } from "react-icons/fa";
+import { CommentType, ExpandedRecipeType } from "../../types/data";
 
 export interface RecipeDetailsProps {}
 
@@ -120,10 +121,14 @@ const ItemButton = styled(Button)`
   }
 `;
 
-export default function SearchItem({ data: recipe }) {
+interface SearchItemProps {
+  data: ExpandedRecipeType;
+}
+
+export default function SearchItem({ data: recipe }: SearchItemProps) {
   const navigate = useNavigate();
 
-  const avgRating = calcArrObjValAvg(recipe.comments, "rating");
+  const avgRating = calcArrObjValAvg<CommentType>(recipe.comments, "rating");
 
   return (
     <Container onClick={() => navigate(`/search/${recipe.id}`)}>

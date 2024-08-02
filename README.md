@@ -1,5 +1,9 @@
 # A front-end mini-project assignment with pre-built (provided) back-end configurations
 
+- xtreamsrl front end assignment, original forked repository from https://github.com/xtreamsrl/interviews-front-end-assignment
+
+- improved version of old one from https://github.com/giulianazhu/recipe-book
+
 ### Key features highlight:
 
 - React hook form, react query (tanstack) including pagination and infinite query, context api, reducer, basic styled components, custom form inputs.
@@ -111,3 +115,17 @@ instructions, cuisine type, and dietary preference and an image.
 Develop a recipe details page where users can view the full recipe, including ingredients, instructions, and user
 comments. Enable users to add comments and rate the recipe, displaying the average rating and updating the list of
 comments.
+
+## How to run
+
+-- Using Vite, React.js and JavaScript
+
+### Run the server
+
+- locate to the "server" folder
+- run "npm start"
+
+### Run the app
+
+- locate to the "front-end" folder
+- run "npm run dev"

@@ -5,10 +5,10 @@ import { Button } from "../../styles/BaseStyledComponents/Button";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { formatQueries, scrollTop } from "../../utils/utils";
 import useFilterContext from "../../contexts/useFilterContext";
-import Error from "../../ui/Error";
 import FilterBox from "./FilterBox";
 import SearchInput from "../../ui/SearchInput";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
+import { CategoryType } from "../../types/data";
 
 const Container = styled(FlexBox)<{ $type?: string }>`
   padding-inline: 1em;
@@ -57,7 +57,9 @@ const SearchButton = styled(Button)`
 interface SearchBoxProps {
   type?: string;
   onSearchSubmit?: () => void;
-  filters: object;
+  filters: {
+    [key: string]: CategoryType[] | undefined;
+  };
 }
 
 export default function SearchBox({
@@ -65,16 +67,16 @@ export default function SearchBox({
   onSearchSubmit,
   filters,
 }: SearchBoxProps) {
-  const { cuisines, diets, difficulties, isError, error } = filters;
+  const { cuisines, diets, difficulties } = filters;
 
   const navigate = useNavigate();
 
-  const { filtersState, setFilter, resetFilters } = useFilterContext();
+  const { filtersState, handleFilter, resetFilters } = useFilterContext();
 
   const location = useLocation();
   // console.log(location.pathname);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     scrollTop();
     if (location.pathname === "/searchinf") {
@@ -85,9 +87,6 @@ export default function SearchBox({
   //using pathname coz i have two types of search pages (pagination and infinite load)
   //default case navigate to /search to be redirected to search page even when im filtering on mobile view with sidebar searchbox on top of a non-searchresult page
 
-  if (isError)
-    return <Error>{error?.message ?? "Error: Try again later"}</Error>;
-
   return (
     <Container $type={type}>
       <Form onSubmit={handleSubmit}>
@@ -95,18 +94,28 @@ export default function SearchBox({
           name="q"
           id="q"
           label="Search"
-          onChange={(e) => setFilter("q", e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            handleFilter("q", e.target.value)
+          }
           value={filtersState?.q ?? ""}
           onSubmit={onSearchSubmit}
         />
         <FlexBox $direction="column">
           <Heading as="h4"> Filters </Heading>
-          <FilterBox options={cuisines} name="cuisineId" label="Cuisine" />
-          <FilterBox options={diets} name="dietId" label="Dietary Preference" />
           <FilterBox
-            options={difficulties}
-            name="difficultyId"
-            label="Difficulty Level"
+            filterOptions={cuisines}
+            fieldName="cuisineId"
+            filterType="Cuisine"
+          />
+          <FilterBox
+            filterOptions={diets}
+            fieldName="dietId"
+            filterType="Dietary Preference"
+          />
+          <FilterBox
+            filterOptions={difficulties}
+            fieldName="difficultyId"
+            filterType="Difficulty Level"
           />
         </FlexBox>
         <FlexBox $justify="center" $flex="auto">

@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import Pagination from "../../ui/Pagination";
 import SearchResults from "./SearchResults";
 import { pageSizeOptions } from "../../utils/constants";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import useFilterRecipes from "../recipes/useFilterRecipes";
+import { useSearchParams } from "react-router-dom";
+import useFilterRecipes from "./useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
-
-export interface ResultsProps {}
+import { FiltersType } from "../../types/state";
 
 export default function Results() {
   const [page, setPage] = useState(1);
@@ -16,12 +15,12 @@ export default function Results() {
   const [searchParams] = useSearchParams();
   const prevQueries = useRef(searchParams.toString());
 
-  function handlePage(page) {
+  function handlePage(page: number) {
     setPage(page);
     scrollTop();
   }
 
-  function handlePageSize(size) {
+  function handlePageSize(size: number) {
     setPageSize(size);
     scrollTop();
   }
@@ -29,9 +28,8 @@ export default function Results() {
   useEffect(
     //to reset page back to 1 if query changed
     function () {
-      // console.log(searchParams.toString());
       const currQueries = searchParams.toString();
-      if (prevQueries !== currQueries) {
+      if (prevQueries.current !== currQueries) {
         setPage(1);
         prevQueries.current = currQueries;
       }
@@ -39,21 +37,24 @@ export default function Results() {
     [searchParams]
   );
 
-  const filters = {};
+  const filters: FiltersType = {};
+
   for (const [key, value] of searchParams.entries()) {
     if (value && value !== "null") {
-      filters[key] = value;
+      (filters as FiltersType)[key as keyof FiltersType] = value;
     } else continue;
   }
 
-  const {
-    data: { data: recipes, totCount, totPages },
-    isPending,
-    isError,
-    error,
-  } = useFilterRecipes(filters, page, pageSize);
+  const { data, isLoading, isError, error } = useFilterRecipes(
+    filters,
+    page,
+    pageSize
+  );
 
-  if (isPending) return <h1>Searching...</h1>;
+  const recipes = data?.data;
+  const totCount = data?.totCount ?? 0;
+  const totPages = data?.totPages ?? 0;
+
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
@@ -68,7 +69,7 @@ export default function Results() {
       pageSize={pageSize}
       onClickPageSize={handlePageSize}
     >
-      <SearchResults data={recipes} />
+      <SearchResults data={recipes} isPending={isLoading} />
     </Pagination>
   );
 }

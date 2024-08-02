@@ -9,7 +9,7 @@ export default function useAddRecipe() {
       queryClient.invalidateQueries({ queryKey: ["recipes"] });
     },
     onError: (err) => {
-      console.err(err);
+      console.error(err.message);
     },
   });
   return { mutate, isPending, isError, error };
