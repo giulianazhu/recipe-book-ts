@@ -27,7 +27,7 @@ export async function getRecipeCommentsInf(
       totCount,
     };
 
-    console.log(results);
+    // console.log(results);
 
     return results;
   } catch (err) {
@@ -54,7 +54,8 @@ export async function addComment(recipeId: string, data: CommentFormDataType) {
       );
     }
     const result = await res.json();
-    console.log("Success:", result);
+    // console.log("Success:", result);
+    return result;
   } catch (err) {
     if (err instanceof Error) {
       console.error(err.message);

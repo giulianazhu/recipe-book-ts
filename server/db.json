@@ -754,6 +754,20 @@
       "date": "2024-08-02T08:41:29.580Z",
       "recipeId": "2",
       "id": "VAKo7iX"
+    },
+    {
+      "comment": "I love sushi ~",
+      "rating": 5,
+      "date": "2024-08-02T13:16:12.726Z",
+      "recipeId": "7",
+      "id": "ox_nPjW"
+    },
+    {
+      "comment": "I love pizza ~~~",
+      "rating": 5,
+      "date": "2024-08-02T13:18:41.572Z",
+      "recipeId": "2",
+      "id": "SlpVyfj"
     }
   ],
   "cuisines": [
