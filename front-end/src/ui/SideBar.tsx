@@ -12,6 +12,7 @@ const Container = styled.nav<{ $visible?: boolean }>`
   position: fixed;
   top: 0;
   z-index: 100;
+  width: 100vw;
   height: 100vh;
   overflow-y: scroll;
   display: none;
