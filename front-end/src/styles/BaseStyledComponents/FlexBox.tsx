@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { boxShadow } from "../optionStyles";
 
 export interface FlexBoxProps {
   $padding: string;
@@ -28,7 +27,6 @@ export interface FlexBoxProps {
     | "last baseline";
   $self: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
   $flex: string;
-  $boxShadow: string;
   // [key: string]: boolean | string;
 }
 
@@ -77,10 +75,5 @@ export const FlexBox = styled.div<Partial<FlexBoxProps>>`
     props.$flex &&
     css`
       flex: ${props.$flex};
-    `}
-    ${(props) =>
-    props.$boxShadow &&
-    css`
-      ${boxShadow[$boxShadow]}
     `}
 `;
