@@ -3,13 +3,16 @@ import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Uploader } from "../../styles/BaseStyledComponents/Uploader";
 import useFilters from "../search/useFilters";
 import useAddRecipe from "./useAddRecipe";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "../../styles/BaseStyledComponents/Button";
 import styled from "styled-components";
 import Loader from "../../ui/Loader";
 import { buttonShadow, media, x2boxShadow } from "../../styles/optionStyles";
 import { InputError } from "../../styles/BaseStyledComponents/InputError";
 import Error from "../../ui/Error";
+import * as yup from "yup";
+import { RecipeFormDataType } from "../../types/state";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Container = styled.div`
   margin: 1em 15%;
@@ -102,10 +105,23 @@ const FormButton = styled(Button)`
   align-self: center;
 `;
 
-export interface AddRecipeFormProps {}
+const schema = yup
+  .object()
+  .shape({
+    name: yup.string().required("*Required"),
+    ingredients: yup.string().required("*Required"),
+    instructions: yup.string().required("*Required"),
+    cuisineId: yup.string().required("*Required"),
+    dietId: yup.string().required("*Required"),
+    difficultyId: yup.string().required("*Required"),
+    image: yup.mixed<FileList>().required("*Required"),
+  })
+  .required();
 
 export default function AddRecipeForm() {
-  const [isUploaded, setIsUploaded] = useState<string | null>(null);
+  const [isUploaded, setIsUploaded] = useState<string | ArrayBuffer | null>(
+    null
+  );
   const [filename, setFilename] = useState("");
   console.log({ isUploaded, filename });
 
@@ -114,7 +130,8 @@ export default function AddRecipeForm() {
     register,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<RecipeFormDataType>({
+    resolver: yupResolver(schema),
     defaultValues: {
       name: "",
       ingredients: "",
@@ -122,7 +139,7 @@ export default function AddRecipeForm() {
       cuisineId: "",
       dietId: "",
       difficultyId: "",
-      image: null,
+      image: undefined,
     },
     // mode: "onBlur",
   });
@@ -132,30 +149,31 @@ export default function AddRecipeForm() {
     diets,
     difficulties,
     isPending: isLoading,
-    isError: isFilterError,
+    isError,
+    error,
   } = useFilters();
 
-  const { mutate: handleAddRecipe, isPending, isError, error } = useAddRecipe();
+  const { mutate: handleAddRecipe, isPending } = useAddRecipe();
 
-  function handleUpload(file) {
+  function handleUpload(file: File) {
     if (file) {
       setFilename(file.name);
       const reader = new FileReader();
       reader.onload = function (e) {
-        setIsUploaded(e.target.result);
+        if (e.target) {
+          setIsUploaded(e.target.result);
+        }
       };
       reader.readAsDataURL(file);
     }
   }
 
-  function onSubmit(data) {
+  const onSubmit: SubmitHandler<RecipeFormDataType> = (data) => {
     const formData = new FormData();
-    for (let props in data) {
+    for (const props in data) {
       formData.append(props, data[props]);
     }
     formData.set("image", data.image[0]);
-
-    console.log(data.image[0]);
 
     handleAddRecipe(formData, {
       onSuccess: (data) => {
@@ -165,10 +183,11 @@ export default function AddRecipeForm() {
         console.log(data);
       },
     });
-  }
+  };
 
   if (isLoading) return <Loader />;
-  if (isFilterError)
+
+  if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
   return (
@@ -187,7 +206,6 @@ export default function AddRecipeForm() {
                 type="text"
                 id="name"
                 {...register("name", {
-                  required: "*required",
                   disabled: isPending,
                 })}
               />
@@ -203,7 +221,6 @@ export default function AddRecipeForm() {
                 as="textarea"
                 id="ingredients"
                 {...register("ingredients", {
-                  required: "*required",
                   disabled: isPending,
                 })}
               ></Input>
@@ -219,7 +236,6 @@ export default function AddRecipeForm() {
                 as="textarea"
                 id="instructions"
                 {...register("instructions", {
-                  required: "*required",
                   disabled: isPending,
                 })}
               />
@@ -240,11 +256,10 @@ export default function AddRecipeForm() {
                 as="select"
                 id="cuisineId"
                 {...register("cuisineId", {
-                  required: "*Required",
                   disabled: isPending,
                 })}
               >
-                {cuisines.map((cuisine) => (
+                {cuisines?.map((cuisine) => (
                   <option value={cuisine.id} key={cuisine.id}>
                     {cuisine.name}
                   </option>
@@ -262,11 +277,10 @@ export default function AddRecipeForm() {
                 as="select"
                 id="dietId"
                 {...register("dietId", {
-                  required: "*Required",
                   disabled: isPending,
                 })}
               >
-                {diets.map((diet) => (
+                {diets?.map((diet) => (
                   <option value={diet.id} key={diet.id}>
                     {diet.name}
                   </option>
@@ -284,11 +298,10 @@ export default function AddRecipeForm() {
                 as="select"
                 id="difficultyId"
                 {...register("difficultyId", {
-                  required: "*Required",
                   disabled: isPending,
                 })}
               >
-                {difficulties.map((difficulty) => (
+                {difficulties?.map((difficulty) => (
                   <option value={difficulty.id} key={difficulty.id}>
                     {difficulty.name}
                   </option>
@@ -320,10 +333,11 @@ export default function AddRecipeForm() {
                   type="file"
                   id="image"
                   {...register("image", {
-                    required: "*required",
                     disabled: isPending,
                   })}
-                  onChange={async (e) => handleUpload(e.target.files[0])}
+                  onChange={async (e) => {
+                    if (e.target.files) handleUpload(e.target.files[0]);
+                  }}
                 />
               </Uploader>
             </FormRow>

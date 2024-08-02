@@ -10,6 +10,7 @@ import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
 import { FaStar } from "react-icons/fa";
 import CommentSection from "../comments/CommentSection";
+import { CommentType } from "../../types/data";
 
 const Container = styled.div`
   margin-inline: auto;
@@ -97,35 +98,27 @@ const Step = styled.div`
 export interface RecipeProps {}
 
 export default function Recipe() {
-  const { id: recipeId } = useParams();
+  const recipeId = useParams().id as string;
 
-  const { data, isPending, isError, error } = useRecipe(recipeId);
+  const { data: recipe, isPending, isError, error } = useRecipe(recipeId);
 
   if (isPending) return <Loader />;
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;
 
-  const {
-    name,
-    ingredients,
-    instructions,
-    image,
-    comments,
-    cuisine,
-    diet,
-    difficulty,
-  } = data;
-
-  const avgRating = calcArrObjValAvg(comments, "rating");
-  const instructionSteps = instructions?.split(". ") ?? [];
+  const avgRating = calcArrObjValAvg(
+    recipe?.comments as CommentType[],
+    "rating"
+  );
+  const instructionSteps = recipe?.instructions?.split(". ") ?? [];
 
   return (
     <Container>
       <ImgWrap>
-        <img src={`${urlport}${image}`} alt={`Image of ${name}`} />
+        <img src={`${urlport}${recipe?.image}`} alt={`Image of ${name}`} />
       </ImgWrap>
       <FlexBox $direction="column" $padding="0.5em 1em" $gap="1em">
-        <Heading>{name}</Heading>
+        <Heading>{recipe?.name}</Heading>
 
         <Overview>
           <div>
@@ -137,21 +130,21 @@ export default function Recipe() {
           </div>
           <div>
             <span>Cuisine: </span>
-            {cuisine.name}
+            {recipe?.cuisine.name}
           </div>
           <div>
             <span>Dietary Preference: </span>
-            {diet.name}
+            {recipe?.diet.name}
           </div>
           <div>
             <span>Difficulty Level: </span>
-            {difficulty.name}
+            {recipe?.difficulty.name}
           </div>
         </Overview>
         <IngredientsTable>
           <Heading as="h4">Ingredients</Heading>
           <List>
-            {ingredients.map((i) => (
+            {recipe?.ingredients.map((i) => (
               <p key={i}>{i}</p>
             ))}
           </List>

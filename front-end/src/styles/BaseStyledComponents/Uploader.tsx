@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { buttonShadow } from "../optionStyles";
 
 // ref: https://dev.to/danireptor/how-to-style-and-customize-html-file-input-in-react-54fo
-export const Uploader = styled.div<{ $image: string | null }>`
+export const Uploader = styled.div<{ $image: string | ArrayBuffer | null }>`
   height: 25rem;
   overflow: hidden;
   border-radius: 15px;
@@ -23,9 +23,9 @@ export const Uploader = styled.div<{ $image: string | null }>`
     props.$image &&
     css`
       background-image: ${`url(${props.$image})`};
-      /* background-color: var(--color-brown-300); */
-      /* background-position: center; */
+      background-color: var(--color-brown-300);
+      background-position: center;
       background-size: cover;
-      /* background-repeat: no-repeat; */
+      background-repeat: no-repeat;
     `}
 `;

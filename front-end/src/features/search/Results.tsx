@@ -3,7 +3,7 @@ import Pagination from "../../ui/Pagination";
 import SearchResults from "./SearchResults";
 import { pageSizeOptions } from "../../utils/constants";
 import { useSearchParams } from "react-router-dom";
-import useFilterRecipes from "../recipes/useFilterRecipes";
+import useFilterRecipes from "./useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
 import { FiltersType } from "../../types/state";

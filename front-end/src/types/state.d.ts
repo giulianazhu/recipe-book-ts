@@ -12,7 +12,8 @@ export type PageSizeType = number;
 export interface RecipeFormDataType extends RecipeType {
   id?: string;
   ingredients: string; //converted to array on the back-end
-  image: File;
+  image: FileList;
+  [key: string]: typeof RecipeFormDataType;
 }
 
 export interface CommentFormDataType extends Partial<CommentType> {
