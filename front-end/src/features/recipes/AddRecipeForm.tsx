@@ -12,7 +12,7 @@ import Error from "../../ui/Error";
 import * as yup from "yup";
 import { RecipeFormDataType } from "../../types/state";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useFilters from "../search/useFilters_temp";
+import useFilters from "../search/useFilters";
 
 const Container = styled.div`
   margin: 1em 15%;

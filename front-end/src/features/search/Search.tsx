@@ -4,7 +4,7 @@ import SearchBox from "./SearchBox";
 import styled from "styled-components";
 import { media } from "../../styles/optionStyles";
 import Error from "../../ui/Error";
-import useFilters from "./useFilters_temp";
+import useFilters from "./useFilters";
 
 const Container = styled.div`
   display: grid;
