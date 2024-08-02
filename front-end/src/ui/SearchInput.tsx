@@ -37,7 +37,7 @@ const StyledSearchInput = styled.span`
 export interface SearchInputProps {
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  id: string | number;
+  id: string;
   value: string;
   onSubmit?: () => void;
   label: string;

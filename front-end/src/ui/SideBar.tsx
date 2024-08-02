@@ -39,8 +39,7 @@ export interface SideBarProps {
 }
 
 export default function SideBar({ toggle, onToggle }: SideBarProps) {
-  const { cuisines, diets, difficulties, isPending, isError, error } =
-    useFilters();
+  const { cuisines, diets, difficulties, isPending } = useFilters();
 
   const elementRef = useRef<HTMLDivElement | null>(null);
 
@@ -58,8 +57,6 @@ export default function SideBar({ toggle, onToggle }: SideBarProps) {
     cuisines,
     diets,
     difficulties,
-    isError,
-    error,
   };
 
   return (

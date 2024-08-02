@@ -52,8 +52,8 @@ export default function Results() {
   );
 
   const recipes = data?.data;
-  const totCount = data?.totCount;
-  const totPages = data?.totPages;
+  const totCount = data?.totCount ?? 0;
+  const totPages = data?.totPages ?? 0;
 
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;

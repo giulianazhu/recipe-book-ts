@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { buttonShadow, media } from "../styles/optionStyles";
 import { pageSizeOptions } from "../utils/constants";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import React from "react";
 
 const Container = styled.div`
   padding: 0.5em 1.5em;
@@ -97,7 +98,15 @@ const PageButton = styled(PageLabel)`
   }
 `;
 
-export interface PaginationProps {}
+export interface PaginationProps {
+  totCount: number;
+  totPages: number;
+  children: React.ReactNode;
+  page: number;
+  pageSize: number;
+  onClickPage: (val: number) => void;
+  onClickPageSize: (val: number) => void;
+}
 
 export default function Pagination({
   totCount = 0,
@@ -107,7 +116,7 @@ export default function Pagination({
   pageSize = pageSizeOptions[0],
   onClickPage,
   onClickPageSize,
-}) {
+}: PaginationProps) {
   const pages = [];
   for (let i = 1; i <= totPages; i++) {
     pages.push(i);
