@@ -377,80 +377,6 @@
       "dietId": "3",
       "difficultyId": "2",
       "image": "/uploads/1720868818696.jpg"
-    },
-    {
-      "id": "1722503730252",
-      "name": "Test",
-      "ingredients": [
-        "sdf"
-      ],
-      "instructions": "sdf",
-      "cuisineId": "14",
-      "dietId": "1",
-      "difficultyId": "1",
-      "image": "/uploads/1722503730239.png"
-    },
-    {
-      "id": "1722504144016",
-      "name": "Last one ",
-      "ingredients": [
-        "here",
-        " there",
-        " is"
-      ],
-      "instructions": "sdfsdf",
-      "cuisineId": "13",
-      "dietId": "1",
-      "difficultyId": "1",
-      "image": "/uploads/1722504144006.jpg"
-    },
-    {
-      "id": "1722504229265",
-      "name": "sdf",
-      "ingredients": [
-        "sdfsdf"
-      ],
-      "instructions": "sdfsdf",
-      "cuisineId": "9",
-      "dietId": "1",
-      "difficultyId": "1",
-      "image": "/uploads/1722504229258.jpg"
-    },
-    {
-      "id": "1722590083081",
-      "name": "test",
-      "ingredients": [
-        "test"
-      ],
-      "instructions": "test",
-      "cuisineId": "11",
-      "dietId": "2",
-      "difficultyId": "3",
-      "image": "/uploads/1722590083060.jpg"
-    },
-    {
-      "id": "1722590143839",
-      "name": "s",
-      "ingredients": [
-        "d"
-      ],
-      "instructions": "d",
-      "cuisineId": "12",
-      "dietId": "3",
-      "difficultyId": "2",
-      "image": "/uploads/1722590143831.jpg"
-    },
-    {
-      "id": "1722592701000",
-      "name": "Broccoli",
-      "ingredients": [
-        "sdfsdf"
-      ],
-      "instructions": "sdf",
-      "cuisineId": "14",
-      "dietId": "2",
-      "difficultyId": "2",
-      "image": "/uploads/1722592700995.png"
     }
   ],
   "comments": [
@@ -665,13 +591,6 @@
       "id": "FZfH3Ui"
     },
     {
-      "comment": "LAST REACT HOOK TRY",
-      "rating": 1,
-      "date": "2024-07-10T16:28:15.659Z",
-      "recipeId": "1",
-      "id": "JVwelwO"
-    },
-    {
       "comment": "try try ",
       "rating": 5,
       "date": "2024-07-12T19:31:44.552Z",
@@ -712,48 +631,6 @@
       "date": "2024-07-30T12:20:34.697Z",
       "recipeId": "1",
       "id": "QM-ab7n"
-    },
-    {
-      "comment": "",
-      "rating": 4,
-      "date": "2024-08-02T08:25:39.710Z",
-      "recipeId": "1",
-      "id": "Wafnt_F"
-    },
-    {
-      "comment": "",
-      "rating": 4,
-      "date": "2024-08-02T08:30:33.859Z",
-      "recipeId": "2",
-      "id": "_ljzzth"
-    },
-    {
-      "comment": "",
-      "rating": 3,
-      "date": "2024-08-02T08:34:03.614Z",
-      "recipeId": "2",
-      "id": "D3GC-EZ"
-    },
-    {
-      "comment": "",
-      "rating": 5,
-      "date": "2024-08-02T08:34:36.425Z",
-      "recipeId": "2",
-      "id": "kv80FD7"
-    },
-    {
-      "comment": "Trying last time",
-      "rating": 5,
-      "date": "2024-08-02T08:35:20.284Z",
-      "recipeId": "2",
-      "id": "RyYBMSD"
-    },
-    {
-      "comment": "",
-      "rating": 4,
-      "date": "2024-08-02T08:41:29.580Z",
-      "recipeId": "2",
-      "id": "VAKo7iX"
     },
     {
       "comment": "I love sushi ~",
