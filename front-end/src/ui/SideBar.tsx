@@ -6,7 +6,7 @@ import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import { Link, Toggler } from "./NavBar";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SearchBox from "../features/search/SearchBox";
-import useFilters from "../features/search/useFilters";
+import useFilters from "../features/search/useFilters_temp";
 
 const Container = styled.nav<{ $visible?: boolean }>`
   position: fixed;
