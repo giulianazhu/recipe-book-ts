@@ -6,6 +6,10 @@ import { useSearchParams } from "react-router-dom";
 import useFilterRecipes from "../recipes/useFilterRecipes";
 import Error from "../../ui/Error";
 import { scrollTop } from "../../utils/utils";
+import { FiltersType } from "../../types/state";
+import { UsePaginatedReturns } from "../../types/hookdata";
+import { ApiPaginatedResults } from "../../types/apidata";
+import { ExpandedRecipeType } from "../../types/data";
 
 export interface ResultsProps {}
 
@@ -16,12 +20,12 @@ export default function Results() {
   const [searchParams] = useSearchParams();
   const prevQueries = useRef(searchParams.toString());
 
-  function handlePage(page) {
+  function handlePage(page: number) {
     setPage(page);
     scrollTop();
   }
 
-  function handlePageSize(size) {
+  function handlePageSize(size: number) {
     setPageSize(size);
     scrollTop();
   }
@@ -29,9 +33,8 @@ export default function Results() {
   useEffect(
     //to reset page back to 1 if query changed
     function () {
-      // console.log(searchParams.toString());
       const currQueries = searchParams.toString();
-      if (prevQueries !== currQueries) {
+      if (prevQueries.current !== currQueries) {
         setPage(1);
         prevQueries.current = currQueries;
       }
@@ -39,19 +42,25 @@ export default function Results() {
     [searchParams]
   );
 
-  const filters = {};
+  const filters: Partial<FiltersType> = {};
+
   for (const [key, value] of searchParams.entries()) {
     if (value && value !== "null") {
-      filters[key] = value;
+      (filters as Partial<FiltersType>)[key as keyof FiltersType] = value;
     } else continue;
   }
 
   const {
-    data: { data: recipes, totCount, totPages },
+    data,
     isLoading,
     isError,
     error,
-  } = useFilterRecipes(filters, page, pageSize);
+  }: UsePaginatedReturns<ApiPaginatedResults<ExpandedRecipeType>> =
+    useFilterRecipes(filters, page, pageSize);
+
+  const recipes = data?.data;
+  const totCount = data?.totCount;
+  const totPages = data?.totPages;
 
   if (isError)
     return <Error>{error?.message ?? "Error: Try again later"}</Error>;

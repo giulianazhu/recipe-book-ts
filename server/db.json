@@ -676,6 +676,48 @@
       "date": "2024-07-30T12:20:34.697Z",
       "recipeId": "1",
       "id": "QM-ab7n"
+    },
+    {
+      "comment": "",
+      "rating": 4,
+      "date": "2024-08-02T08:25:39.710Z",
+      "recipeId": "1",
+      "id": "Wafnt_F"
+    },
+    {
+      "comment": "",
+      "rating": 4,
+      "date": "2024-08-02T08:30:33.859Z",
+      "recipeId": "2",
+      "id": "_ljzzth"
+    },
+    {
+      "comment": "",
+      "rating": 3,
+      "date": "2024-08-02T08:34:03.614Z",
+      "recipeId": "2",
+      "id": "D3GC-EZ"
+    },
+    {
+      "comment": "",
+      "rating": 5,
+      "date": "2024-08-02T08:34:36.425Z",
+      "recipeId": "2",
+      "id": "kv80FD7"
+    },
+    {
+      "comment": "Trying last time",
+      "rating": 5,
+      "date": "2024-08-02T08:35:20.284Z",
+      "recipeId": "2",
+      "id": "RyYBMSD"
+    },
+    {
+      "comment": "",
+      "rating": 4,
+      "date": "2024-08-02T08:41:29.580Z",
+      "recipeId": "2",
+      "id": "VAKo7iX"
     }
   ],
   "cuisines": [

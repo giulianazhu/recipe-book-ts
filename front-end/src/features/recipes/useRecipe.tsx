@@ -7,11 +7,6 @@ export default function useRecipe(recipeId: string) {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ["recipes", recipeId],
     queryFn: () => getRecipe(recipeId),
-    // placeholderData: () => {
-    //   return queryClient
-    //     .getQueryData(["recipes"])
-    //     ?.find((recipe) => recipe.id === recipeId);
-    // },
     placeholderData: () => {
       const recipes: ExpandedRecipeType[] | undefined =
         queryClient.getQueryData(["recipes"]);

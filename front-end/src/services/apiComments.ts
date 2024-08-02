@@ -27,6 +27,8 @@ export async function getRecipeCommentsInf(
       totCount,
     };
 
+    console.log(results);
+
     return results;
   } catch (err) {
     if (err instanceof Error) {

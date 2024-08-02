@@ -17,5 +17,5 @@ export interface RecipeFormDataType extends RecipeType {
 
 export interface CommentFormDataType extends Partial<CommentType> {
   rating: number;
-  comment: string;
+  comment?: string;
 }

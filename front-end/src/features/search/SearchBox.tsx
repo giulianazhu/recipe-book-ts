@@ -9,6 +9,8 @@ import Error from "../../ui/Error";
 import FilterBox from "./FilterBox";
 import SearchInput from "../../ui/SearchInput";
 import { Heading } from "../../styles/BaseStyledComponents/Heading";
+import { UseMultipleDataReturns } from "../../types/hookdata";
+import { CategoryType } from "../../types/data";
 
 const Container = styled(FlexBox)<{ $type?: string }>`
   padding-inline: 1em;

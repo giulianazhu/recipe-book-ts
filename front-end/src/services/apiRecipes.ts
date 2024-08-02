@@ -1,11 +1,6 @@
 import { ApiPaginatedResults } from "../types/apidata";
 import { ExpandedRecipeType, RecipeType } from "../types/data";
-import {
-  FiltersObjType,
-  FiltersType,
-  PageSizeType,
-  PageType,
-} from "../types/state";
+import { FiltersType, PageSizeType, PageType } from "../types/state";
 import { pageSizeOptions } from "../utils/constants";
 import { formatQueries, isEmptyObj } from "../utils/utils";
 import { urlport } from "./config";

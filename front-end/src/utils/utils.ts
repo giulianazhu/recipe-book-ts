@@ -11,13 +11,9 @@ export function formatQueries(filters: Filters) {
   return queryFilters.toString();
 }
 
-interface NumericObject {
-  [key: string]: number;
-}
-
-export function calcArrObjValAvg<T extends NumericObject>(
-  arr: T[],
-  property: keyof T
+export function calcArrObjValAvg<DataType>(
+  arr: DataType[],
+  property: keyof DataType
 ) {
   let avg = 0;
   for (const el of arr) {

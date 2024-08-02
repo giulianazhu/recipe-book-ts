@@ -7,9 +7,9 @@ export interface ApiPaginatedResults<DataType> {
 }
 
 export interface ApiInfiniteResults<DataType> {
-  data: DataType[];
+  data: DataType[] | undefined;
   hasMore: boolean;
   totCount: number;
 }
 
-export type ApiFiltersResults = CategoryType[];
+export type ApiCategoriesResults = CategoryType[];

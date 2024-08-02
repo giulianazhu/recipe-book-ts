@@ -1,8 +1,15 @@
 import Rating from "@mui/material/Rating";
 import { FaStar } from "react-icons/fa";
 
-function CustomIcon() {
-  return <FaStar />;
+interface StarRatingProps {
+  disabled: boolean;
+  readOnly: boolean;
+  name: string;
+  isPending: boolean;
+  onChange: () => void;
+  value: number;
+  size: "small" | "medium" | "large";
+  color: string;
 }
 
 export default function StarRating({
@@ -14,14 +21,14 @@ export default function StarRating({
   value,
   size = "medium",
   color = "yellow",
-}) {
+}: Partial<StarRatingProps>) {
   return (
     <Rating
       name={name}
       disabled={disabled || isPending}
       readOnly={readOnly}
       onChange={onChange}
-      value={parseInt(value)}
+      value={value}
       icon={<FaStar color={color} />}
       size={size}
     />
