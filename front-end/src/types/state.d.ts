@@ -14,7 +14,7 @@ export interface RecipeFormDataType extends RecipeType {
   id?: string;
   ingredients: string; //converted to array on the back-end
   image: FileList;
-  [key: string]: typeof RecipeFormDataType;
+  // [key: string]: typeof RecipeFormDataType;
 }
 
 export interface CommentFormDataType extends Partial<CommentType> {

@@ -170,9 +170,13 @@ export default function AddRecipeForm() {
 
   const onSubmit: SubmitHandler<RecipeFormDataType> = (data) => {
     const formData = new FormData();
-    for (const props in data) {
-      formData.append(props, data[props]);
+    // for (const props in data) {
+    //   formData.append(props, data[props]);
+    // }
+    for (const [key, val] of Object.entries(data)) {
+      formData.append(key, val);
     }
+
     formData.set("image", data.image[0]);
 
     handleAddRecipe(formData, {
