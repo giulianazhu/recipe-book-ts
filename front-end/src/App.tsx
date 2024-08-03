@@ -8,6 +8,7 @@ import SearchPage from "./pages/SearchPage";
 import RecipePage from "./pages/RecipePage";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ResultsPage from "./pages/ResultsPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const queryClient = new QueryClient({
@@ -35,6 +36,31 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-center"
+        gutter={10}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 5000,
+            iconTheme: {
+              primary: "var(--color-red-500)",
+              secondary: "var(--color-grey-100)",
+            },
+          },
+          style: {
+            fontSize: "1.3rem",
+            maxWidth: "300px",
+            padding: "1rem 2rem",
+            border: "2px solid var(--color-grey-200)",
+            backgroundColor: "var(--color-brown-100)",
+            color: "var(--color-brown-700)",
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

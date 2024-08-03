@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import { NavLink } from "react-router-dom";
+import usePrefetchRecipes from "../features/recipes/usePrefetchRecipes";
 
 const gradient = keyframes` 
 	0% {
@@ -74,9 +75,8 @@ const HomeButton = styled(NavLink)`
   }
 `;
 
-export interface HomePageProps {}
-
 export default function HomePage() {
+  usePrefetchRecipes();
   return (
     <Landing>
       <Content>
