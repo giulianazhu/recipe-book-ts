@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
-import {
-  createTheme,
-  Pagination,
-  PaginationItem,
-  ThemeProvider,
-} from "@mui/material";
+import { createTheme, Pagination, ThemeProvider } from "@mui/material";
 import { buttonShadow } from "../styles/optionStyles";
 
 const Container = styled(FlexBox)`
@@ -16,7 +11,7 @@ const Container = styled(FlexBox)`
 export interface PagingBoxProps {
   page: number;
   totPages: number;
-  onClickPage: (event: React.ChangeEvent<Element>, page: number) => void;
+  onClickPage: (_e: React.ChangeEvent<unknown>, page: number) => void;
 }
 
 const theme = createTheme({
@@ -65,12 +60,7 @@ export default function PagingBox({
           hidePrevButton
           hideNextButton
           page={page}
-          onChange={
-            onClickPage as (
-              event: React.ChangeEvent<unknown>,
-              page: number
-            ) => void
-          }
+          onChange={onClickPage}
         />
       </ThemeProvider>
     </Container>

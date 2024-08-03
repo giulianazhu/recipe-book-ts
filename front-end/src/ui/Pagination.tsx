@@ -62,7 +62,7 @@ export interface PaginationProps {
   children: React.ReactNode;
   page: number;
   pageSize: number;
-  onClickPage: (event: React.ChangeEvent<Element>, page: number) => void;
+  onClickPage: (_e: React.ChangeEvent<unknown>, page: number) => void;
   onClickPageSize: (val: number) => void;
 }
 
