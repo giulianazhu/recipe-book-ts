@@ -15,7 +15,7 @@ export default function Results() {
   const [searchParams] = useSearchParams();
   const prevQueries = useRef(searchParams.toString());
 
-  function handlePage(page: number) {
+  function handlePage(event: React.ChangeEvent<Element>, page: number) {
     setPage(page);
     scrollTop();
   }

@@ -13,16 +13,6 @@ const GlobalStyles = createGlobalStyle`
     --color-grey-800: #333333; 
     --color-grey-900: #141414;
 
-    --color-accent-100: #E6F7F9; /* Very light teal */
---color-accent-200: #CDEFF2; /* Light teal */
---color-accent-300: #B3E6EB; /* Soft teal */
---color-accent-400: #99DDE4; /* Light blue teal */
---color-accent-500: #80D5DD; /* Medium teal */
---color-accent-600: #66CCD6; /* Rich teal */
---color-accent-700: #4DC3CF; /* Deeper teal */
---color-accent-800: #33BAC8; /* Dark teal */
---color-accent-900: #1AB1C1; /* Very dark teal */
-
     --color-brown-100: #FFFFFF; 
     --color-brown-200: #E0DCD8; 
     --color-brown-300: #C9C2BB; // like 
@@ -34,14 +24,14 @@ const GlobalStyles = createGlobalStyle`
     --color-brown-900: #0B0A09;
 
     --color-golden-100: #FAF8E6;
---color-golden-200: #E9E3B3;
---color-golden-300: #D9CE80; // like
---color-golden-400: #C9B94D;
---color-golden-500: #B9A41A;
---color-golden-600: #A08B00;
---color-golden-700: #7A6A00;
---color-golden-800: #544900; //text color
---color-golden-900: #2E2900;
+    --color-golden-200: #E9E3B3;
+    --color-golden-300: #D9CE80; // like
+    --color-golden-400: #C9B94D;
+    --color-golden-500: #B9A41A;
+    --color-golden-600: #A08B00;
+    --color-golden-700: #7A6A00;
+    --color-golden-800: #544900; //text color
+    --color-golden-900: #2E2900;
 
     --color-beige-000: #fff9f8;
     --color-beige-100: #F9F0E6; /* Very light beige with a hint of warm pink */
@@ -129,11 +119,12 @@ img {
   max-width: 100%;
 }
 
-button, a, span, label {
+button, a, span, label, textarea, select, input {
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Standard */
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {

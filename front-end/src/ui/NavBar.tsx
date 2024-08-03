@@ -46,6 +46,7 @@ export const Toggler = styled.button`
   color: inherit;
   font-size: 2em;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
     color: var(--color-brown-400);
   }

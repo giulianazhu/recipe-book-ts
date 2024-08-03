@@ -1,10 +1,9 @@
-import { css } from "@emotion/react";
 import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import styled from "styled-components";
-import { buttonShadow, media } from "../styles/optionStyles";
+import { media } from "../styles/optionStyles";
 import { pageSizeOptions } from "../utils/constants";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import React from "react";
+import PagingBox from "./PagingBox";
 
 const Container = styled.div`
   padding: 0.5em 1.5em;
@@ -55,48 +54,7 @@ const Select = styled.select`
   }
 `;
 
-const BottomPage = styled(FlexBox)`
-  align-items: center;
-  justify-self: center;
-`;
-
-const PageLabel = styled.button<{ $current?: boolean }>`
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--color-grey-300);
-  border-radius: 50%;
-  background-color: var(--color-grey-200);
-  box-shadow: ${buttonShadow.sm_dark};
-  &:hover {
-    border: 1px solid var(--color-brown-400);
-  }
-  ${(props) =>
-    props.$current &&
-    css`
-      border: 1px solid var(--color-golden-200);
-      background-color: var(--color-golden-300);
-      color: white;
-    `}
-`;
-
-const PageButton = styled(PageLabel)`
-  background-color: var(--color-grey-100);
-  border-color: var(--color-grey-200);
-  &:hover {
-    background-color: var(--color-grey-200);
-  }
-  &:disabled {
-    box-shadow: none;
-    color: var(--color-grey-400);
-    &:hover {
-      background-color: var(--color-grey-100);
-      border: none;
-    }
-  }
-`;
+const BottomPage = styled.div``;
 
 export interface PaginationProps {
   totCount: number;
@@ -104,7 +62,7 @@ export interface PaginationProps {
   children: React.ReactNode;
   page: number;
   pageSize: number;
-  onClickPage: (val: number) => void;
+  onClickPage: (event: React.ChangeEvent<Element>, page: number) => void;
   onClickPageSize: (val: number) => void;
 }
 
@@ -148,24 +106,7 @@ export default function Pagination({
       {children}
 
       <BottomPage>
-        <PageButton disabled={page === 1} onClick={() => onClickPage(page - 1)}>
-          <RiArrowLeftSLine />
-        </PageButton>
-        {pages.map((p) => (
-          <PageLabel
-            $current={p === page}
-            onClick={() => onClickPage(p)}
-            key={p}
-          >
-            {p}
-          </PageLabel>
-        ))}
-        <PageButton
-          disabled={page === totPages}
-          onClick={() => onClickPage(page + 1)}
-        >
-          <RiArrowRightSLine />
-        </PageButton>
+        <PagingBox page={page} totPages={totPages} onClickPage={onClickPage} />
       </BottomPage>
     </Container>
   );

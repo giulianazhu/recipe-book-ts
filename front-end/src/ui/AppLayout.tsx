@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import useToggle from "../hooks/useToggle";
 import styled, { css } from "styled-components";
 import FilterProvider from "../contexts/FilterContext";
+import ScrollToTop from "./ScrollToTop";
 
 const StyledAppLayout = styled.div<{ $visible: boolean }>`
   min-height: 100vh;
@@ -13,8 +14,8 @@ const StyledAppLayout = styled.div<{ $visible: boolean }>`
   ${(props) =>
     !props.$visible &&
     css`
-      max-height: 100vh;
-      /* overflow: hidden; */
+      /* max-height: 100vh; */
+      overflow: hidden;
     `}
   background-color: var(--color-brown-100);
 `;
@@ -26,7 +27,9 @@ export default function AppLayout() {
     <StyledAppLayout $visible={mainVisible}>
       <NavBar onToggle={handleToggle} view="desktop" />
       <FilterProvider>
-        <Outlet />
+        <ScrollToTop>
+          <Outlet />
+        </ScrollToTop>
         <SideBar toggle={toggle} onToggle={handleToggle} />
       </FilterProvider>
       <Footer />
