@@ -67,6 +67,7 @@ export default function SearchBox({
   onSearchSubmit,
   filters,
 }: SearchBoxProps) {
+  
   const { cuisines, diets, difficulties } = filters;
 
   const navigate = useNavigate();
