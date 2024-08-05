@@ -35,7 +35,7 @@
 
 ### Mobile View
 
-![mobile_homepage_screenshot](./demo_pics/mobile_homepage.png) ![mobile_searchbox_screenshot](./demo_pics/mobile_searchbox.png) ![mobile_searchpage_screenshot](./demo_pics/mobile_searchpage.png) ![mobile_recipepage_screenshot](./demo_pics/mobile_recipepage.png) ![mobile_formpage_screenshot](./demo_pics/mobile_formpage.png)
+<img alt="mobile_homepage_screenshot" width="360" height="780" src="./demo_pics/mobile_homepage.png" /> <img alt="mobile_searchbox_screenshot" width="360" height="780" src="./demo_pics/mobile_searchbox.png" /> <img alt="mobile_searchpage_screenshot" width="360" height="780" src="./demo_pics/mobile_searchpage.png" /> <img alt="mobile_recipepage_screenshot" width="360" height="780" src="./demo_pics/mobile_recipepage.png" /> <img alt="mobile_formpage_screenshot" width="360" height="780" src="./demo_pics/mobile_formpage.png" />
 
 # React Developer Interview Assignment Details
 
