@@ -22,6 +22,21 @@
 - locate to the "front-end" folder
 - run "npm run dev"
 
+## DEMO screenshots
+
+(or check ./demo_pics folder)
+
+### Laptop View
+
+![laptop_homepage_screenshot](./demo_pics/laptop_homepage.png)
+![laptop_searchpage_screenshot](./demo_pics/laptop_searchpage.png)
+![laptop_recipepage_screenshot](./demo_pics/laptop_recipepage.png)
+![laptop_formpage_screenshot](./demo_pics/laptop_formpage.png)
+
+### Mobile View
+
+![mobile_homepage_screenshot](./demo_pics/mobile_homepage.png) ![mobile_searchbox_screenshot](./demo_pics/mobile_searchbox.png) ![mobile_searchpage_screenshot](./demo_pics/mobile_searchpage.png) ![mobile_recipepage_screenshot](./demo_pics/mobile_recipepage.png) ![mobile_formpage_screenshot](./demo_pics/mobile_formpage.png)
+
 # React Developer Interview Assignment Details
 
 ## Introduction
