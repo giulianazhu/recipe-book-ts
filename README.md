@@ -1,8 +1,10 @@
-# A front-end mini-project assignment with pre-built (provided) back-end configurations
+# A front-end assignment project (DEMO pictures below or check the website)
 
-- xtreamsrl front end assignment, original forked repository from https://github.com/xtreamsrl/interviews-front-end-assignment
+- [DEMO website link](https://recipe-book-ts.netlify.app/home)
 
-- improved version of old one from https://github.com/giulianazhu/recipe-book
+- xtreamsrl front end assignment, [forked repository link](https://github.com/xtreamsrl/interviews-front-end-assignment)
+
+- improved version of [old one](https://github.com/giulianazhu/recipe-book)
 
 ### Key features highlight:
 
