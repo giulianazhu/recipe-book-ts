@@ -1,9 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { buttonShadow, media } from "../../styles/optionStyles";
 import { Button } from "../../styles/BaseStyledComponents/Button";
 import { FlexBox } from "../../styles/BaseStyledComponents/FlexBox";
-import { formatQueries, scrollTop } from "../../utils/utils";
+import { scrollTop } from "../../utils/utils";
 import useFilterContext from "../../contexts/useFilterContext";
 import FilterBox from "./FilterBox";
 import SearchInput from "../../ui/SearchInput";
@@ -67,26 +66,16 @@ export default function SearchBox({
   onSearchSubmit,
   filters,
 }: SearchBoxProps) {
-  
   const { cuisines, diets, difficulties } = filters;
 
-  const navigate = useNavigate();
-
-  const { filtersState, handleFilter, resetFilters } = useFilterContext();
-
-  const location = useLocation();
-  // console.log(location.pathname);
+  const { filtersState, handleFilter, resetFilters, handleSearch } =
+    useFilterContext();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     scrollTop();
-    if (location.pathname === "/searchinf") {
-      navigate(`${location.pathname}?${formatQueries(filtersState)}`);
-    } else navigate(`/search?${formatQueries(filtersState)}`);
+    handleSearch();
   }
-
-  //using pathname coz i have two types of search pages (pagination and infinite load)
-  //default case navigate to /search to be redirected to search page even when im filtering on mobile view with sidebar searchbox on top of a non-searchresult page
 
   return (
     <Container $type={type}>

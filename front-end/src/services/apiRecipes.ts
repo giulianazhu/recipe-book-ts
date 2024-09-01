@@ -1,6 +1,12 @@
 import { ApiPaginatedResults } from "../types/apidata";
 import { ExpandedRecipeType, RecipeType } from "../types/data";
-import { FiltersType, PageSizeType, PageType } from "../types/state";
+import {
+  FiltersType,
+  OrderEndpoints,
+  PageSizeType,
+  PageType,
+  SortEndpoints,
+} from "../types/state";
 import { pageSizeOptions } from "../utils/constants";
 import { formatQueries, isEmptyObj } from "../utils/utils";
 import { urlport } from "./config";
@@ -31,11 +37,13 @@ export async function prefetchRecipes(): Promise<
 
 export async function getRecipes(
   page: number = 1,
-  pageSize: number = pageSizeOptions[0]
+  pageSize: number = pageSizeOptions[0],
+  sort: SortEndpoints = "",
+  order: OrderEndpoints = ""
 ): Promise<ApiPaginatedResults<ExpandedRecipeType> | undefined> {
   try {
     const res = await fetch(
-      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments`
+      `${urlport}/recipes?_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments&_sort=${sort}&_order=${order}`
     );
     if (!res.ok) {
       throw new Error(
@@ -66,16 +74,18 @@ export async function getRecipes(
 export async function getFilterRecipes(
   filters: FiltersType,
   page: PageType = 1,
-  pageSize: PageSizeType = pageSizeOptions[0]
+  pageSize: PageSizeType = pageSizeOptions[0],
+  sort: SortEndpoints = "",
+  order: OrderEndpoints = ""
 ): Promise<ApiPaginatedResults<ExpandedRecipeType> | undefined> {
-  if (isEmptyObj(filters)) return getRecipes(page, pageSize);
+  if (isEmptyObj(filters)) return getRecipes(page, pageSize, sort, order);
 
   const queryFilters = formatQueries(filters);
   //filters turned to object first to pass into query key and then turned back into url search param to put in the url
 
   try {
     const res = await fetch(
-      `${urlport}/recipes?${queryFilters}&_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments`
+      `${urlport}/recipes?${queryFilters}&_expand=difficulty&_expand=cuisine&_expand=diet&_page=${page}&_limit=${pageSize}&_embed=comments&_sort=${sort}&_order=${order}`
     );
     if (!res.ok) {
       throw new Error(
