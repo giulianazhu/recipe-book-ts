@@ -1,41 +1,18 @@
-import { useEffect, useRef, useState } from "react";
 import Pagination from "../../ui/Pagination";
 import SearchResults from "./SearchResults";
-import { pageSizeOptions } from "../../utils/constants";
 import { useSearchParams } from "react-router-dom";
 import useFilterRecipes from "./useFilterRecipes";
 import Error from "../../ui/Error";
-import { scrollTop } from "../../utils/utils";
 import { FiltersType } from "../../types/state";
+import useFilterContext from "../../contexts/useFilterContext";
 
 export default function Results() {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(pageSizeOptions[0]);
-
   const [searchParams] = useSearchParams();
-  const prevQueries = useRef(searchParams.toString());
 
-  function handlePage(_e: React.ChangeEvent<unknown>, page: number) {
-    setPage(page);
-    scrollTop();
-  }
+  const { handlePage, handlePageSize, handleSort, filtersState } =
+    useFilterContext();
 
-  function handlePageSize(size: number) {
-    setPageSize(size);
-    scrollTop();
-  }
-
-  useEffect(
-    //to reset page back to 1 if query changed
-    function () {
-      const currQueries = searchParams.toString();
-      if (prevQueries.current !== currQueries) {
-        setPage(1);
-        prevQueries.current = currQueries;
-      }
-    },
-    [searchParams]
-  );
+  const { page, pageSize, sort, order } = filtersState;
 
   const filters: FiltersType = {};
 
@@ -48,7 +25,9 @@ export default function Results() {
   const { data, isLoading, isError, error } = useFilterRecipes(
     filters,
     page,
-    pageSize
+    pageSize,
+    sort,
+    order
   );
 
   const recipes = data?.data;
@@ -68,6 +47,7 @@ export default function Results() {
       page={page}
       pageSize={pageSize}
       onClickPageSize={handlePageSize}
+      onChangeSort={handleSort}
     >
       <SearchResults data={recipes} isPending={isLoading} />
     </Pagination>

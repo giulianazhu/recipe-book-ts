@@ -1,9 +1,10 @@
 import { FlexBox } from "../styles/BaseStyledComponents/FlexBox";
 import styled from "styled-components";
 import { media } from "../styles/optionStyles";
-import { pageSizeOptions } from "../utils/constants";
+import { pageSizeOptions, sortOptionNames } from "../utils/constants";
 import React from "react";
 import PagingBox from "./PagingBox";
+import useFilterContext from "../contexts/useFilterContext";
 
 const Container = styled.div`
   padding: 0.5em 1.5em;
@@ -64,6 +65,7 @@ export interface PaginationProps {
   pageSize: number;
   onClickPage: (_e: React.ChangeEvent<unknown>, page: number) => void;
   onClickPageSize: (val: number) => void;
+  onChangeSort: (option: string) => void;
 }
 
 export default function Pagination({
@@ -74,11 +76,16 @@ export default function Pagination({
   pageSize = pageSizeOptions[0],
   onClickPage,
   onClickPageSize,
+  onChangeSort,
 }: PaginationProps) {
   const pages = [];
   for (let i = 1; i <= totPages; i++) {
     pages.push(i);
   }
+
+  const {
+    filtersState: { sort, order },
+  } = useFilterContext();
 
   return (
     <Container>
@@ -96,10 +103,20 @@ export default function Pagination({
         <Select
           name="_sort"
           id="_sort"
-          onChange={() => alert("Yet to apply feature")}
+          onChange={(e) => {
+            onChangeSort(e.target.value);
+          }}
+          defaultValue={`${sort},${order}`}
         >
-          <option value="-id">Most recent</option>
-          <option value="id">Least recent</option>
+          {sortOptionNames.map((option, i) => (
+            <option
+              value={option.value}
+              key={i}
+              selected={`${sort},${order}` === option.value.toString()}
+            >
+              {option.name}
+            </option>
+          ))}
         </Select>
       </TopPage>
 
