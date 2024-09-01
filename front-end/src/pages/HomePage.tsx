@@ -38,7 +38,8 @@ const Landing = styled.div`
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.8)
     ),
-    url("lily-banse--YHSwy6uqvk-unsplash.jpg");
+    /* url("lily-banse--YHSwy6uqvk-unsplash.jpg"); */
+      url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
